@@ -14,6 +14,9 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz")
 -- Binding in insert mode for deleting the last block of text
 -- Apparently <C-BS> auto binds to <C-H> in st...
 vim.keymap.set('i', '<C-H>', "<C-W>")
+-- Instantly go to the beginning and end of lines in insert mode (Emacs style)
+vim.keymap.set('i', '<C-e>', '<C-o>$')
+vim.keymap.set('i', '<C-a>', '<C-o>0')
 
 -- Open Oil file manager
 vim.keymap.set("n", "<leader>.", require("oil").open, { desc = "Open parent directory" })
