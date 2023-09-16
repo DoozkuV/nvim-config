@@ -49,4 +49,5 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 
-vim.keymap.set("n", "<leader>ol", ':Lazy', { desc = "Open Lazy" })
+-- Open lazy
+vim.keymap.set("n", "<leader>ol", ':Lazy<cr>', { desc = "Open Lazy" })

@@ -91,6 +91,7 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    event = { "BufRead", "BufNewFile" },
   },
 
   {
@@ -107,6 +108,7 @@ require('lazy').setup({
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
+    event = 'InsertEnter',
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -195,6 +197,24 @@ require('lazy').setup({
         end,
       },
     },
+    cmd = "Telescope",
+    keys = {
+      { 'n', '<leader>sr', },
+      { 'n', '<leader>,', },
+      { 'n', '<leader>/', },
+      { 'n', '<leader>gf' },
+      { 'n', '<leader>sf' },
+      { 'n', '<leader> ' },
+      { 'n', '<leader>sh' },
+      { 'n', '<leader>sw' },
+      { 'n', '<leader>sg' },
+      { 'n', '<leader>sd' },
+      -- LSP Actions
+      { 'n', 'gr' },
+      { 'n', '<leader>ds' },
+      { 'n', '<leader>ws' },
+
+    },
   },
 
   {
@@ -255,7 +275,8 @@ pcall(require('telescope').load_extension, 'fzf')
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown',
+  },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
