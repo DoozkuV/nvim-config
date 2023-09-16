@@ -7,8 +7,9 @@ return {
     restore_win_options = true,
     keymaps = {
       ["q"] = "actions.close",
-      ["h"] = "actions.parent",
-      ["l"] = "actions.select",
+      -- Disable these commands - they are really annoying!
+      ["H"] = "actions.parent",
+      ["L"] = "actions.select",
     }
   },
   -- Optional dependencies
