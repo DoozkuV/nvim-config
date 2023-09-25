@@ -73,8 +73,8 @@ return {
     --  define the property 'filetypes' to the map in question.
     local servers = {
       clangd = {},
-      -- gopls = {},
-      -- pyright = {},
+      gopls = {},
+      pyright = {},
       rust_analyzer = {},
       bashls = { filetypes = { 'sh', 'zsh' }, },
       -- tsserver = {},

@@ -1,5 +1,7 @@
 -- Plugins related to git go here
 return {
+  -- Git commands 
+  -- This automatically loads only when in a Git Repo
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   {
