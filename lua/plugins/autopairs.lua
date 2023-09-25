@@ -2,7 +2,6 @@ return {
   {
     "windwp/nvim-autopairs",
     -- Optional dependency
-    after = 'nvim-cmp',
     event = 'InsertEnter',
     config = function()
       require("nvim-autopairs").setup {
@@ -17,8 +16,4 @@ return {
       )
     end,
   },
-  {
-    'hiphish/rainbow-delimiters.nvim',
-    after = 'nvim-treesitter'
-  }
 }
