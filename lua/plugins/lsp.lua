@@ -16,7 +16,7 @@ return {
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
   },
-  event = { "BufRead", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
@@ -74,7 +74,7 @@ return {
     local servers = {
       clangd = {},
       gopls = {},
-      pyright = {},
+      pylsp = {},
       rust_analyzer = {},
       bashls = { filetypes = { 'sh', 'zsh' }, },
       -- tsserver = {},

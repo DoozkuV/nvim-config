@@ -23,7 +23,7 @@ Distribution Alternatives:
 * Backup your previous configuration (if any exists)
 
 ### Archive Installation
-* On the home/landing page for the project find the blue "<> CODE" button click it and select Local > Download ZIP.
+* On the home/landing page for the project find the blue " <> CODE" button click it and select Local > Download ZIP.
 * Extract the archive to:
   `~/.config/nvim` (Linux)
   `~/.config/nvim` (MacOS)

@@ -18,6 +18,9 @@ vim.keymap.set('i', '<C-H>', "<C-W>")
 vim.keymap.set('i', '<C-e>', '<C-o>$')
 vim.keymap.set('i', '<C-a>', '<C-o>0')
 
+-- Better keybind for switching to last buffer
+vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
+
 -- [[ Oil ]]
 -- Open Oil file manager
 vim.keymap.set("n", "<leader>.", require("oil").open, { desc = "Open parent directory" })
@@ -28,27 +31,6 @@ vim.keymap.set("n", "<leader>op", ':Neotree toggle<cr>', { desc = "Open File Tre
 -- Open Neo-tree buffer list
 vim.keymap.set("n", "<leader>ob", ':Neotree toggle show buffers right<cr>', { desc = "[O]pen [B]uffer list" })
 
--- [[ Telescope ]]
--- See `:help telescope.builtin`
--- vim.keymap.set('n', '<leader>sr', require('telescope.builtin').oldfiles, { desc = '[S]earch [R]ecently opened files' })
--- vim.keymap.set('n', '<leader>,', require('telescope.builtin').buffers, { desc = '[,] Find existing buffers' })
--- vim.keymap.set('n', '<leader>/', function()
--- 	-- You can pass additional configuration to telescope to change theme, layout, etc.
--- 	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
--- 		winblend = 10,
--- 		previewer = false,
--- 	})
--- end, { desc = '[/] Fuzzily search in current buffer' })
---
--- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
--- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
--- vim.keymap.set('n', '<leader> ', require('telescope.builtin').find_files, { desc = '[ ] Find Files' })
--- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
--- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
--- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
--- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
---
---
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
@@ -56,9 +38,14 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
--- Open lazy
-vim.keymap.set("n", "<leader>ol", ':Lazy<cr>', { desc = "Open Lazy" })
+-- Open Functions
+vim.keymap.set("n", "<leader>ol", ':Lazy<cr>', { desc = "[O]pen [L]azy" })
+vim.keymap.set("n", "<leader>om", ':Mason<cr>', { desc = "[O]pen [M]ason" })
+-- The following runs a command that opens a new terminal window
+vim.keymap.set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>', { desc = "[O]pen [T]erminal" })
 
 -- [[ Toggles ]]
 vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil" })
 vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode" })
+vim.keymap.set("n", "<leader>ts", ":set spell!<cr>", { desc = "[T]oggle [S]pellcheck" })
+-- '<leader>tm' toggles markdown-preview... see markdown.lua
