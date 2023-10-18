@@ -76,6 +76,7 @@ return {
       gopls = {},
       pylsp = {},
       rust_analyzer = {},
+      sqlls = { filetypes = { 'sql', 'mysql' } },
       bashls = { filetypes = { 'sh', 'zsh' }, },
       -- tsserver = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
