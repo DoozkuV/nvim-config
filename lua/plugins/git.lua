@@ -2,8 +2,12 @@
 return {
   -- Git commands 
   -- This automatically loads only when in a Git Repo
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  -- 'tpope/vim-fugitive',
+  -- 'tpope/vim-rhubarb',
+  {
+    "NeogitOrg/neogit",
+    config = true,
+  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
