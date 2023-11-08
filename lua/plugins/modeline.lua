@@ -10,5 +10,5 @@ return {
         section_separators = '',
       },
     },
-    enabled = false,
+    -- enabled = false,
   }
