@@ -1,6 +1,6 @@
 -- Plugins related to git go here
 return {
-  -- Git commands 
+  -- Git commands
   -- This automatically loads only when in a Git Repo
   -- 'tpope/vim-fugitive',
   -- 'tpope/vim-rhubarb',
@@ -9,12 +9,12 @@ return {
     config = true,
     cmd = "Neogit",
     keys = {
-      '<leader>gg', ':Neogit<cr>', {
+      { "<leader>gg", ":Neogit<cr>", {
         desc = '[G]it Open'
-      },
-      '<leader>gc', ':Neogit commit<cr>', {
+      }, },
+      { "<leader>gc", ":Neogit commit<cr>", {
         desc = '[G]it [C]ommit Open'
-      },
+      }, }
     },
   },
   {
