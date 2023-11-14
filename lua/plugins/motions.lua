@@ -29,4 +29,6 @@ return {
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {}, keys = { "gc", "gb" } },
+  -- Add emacs-like bindings to vim in insert/commandline mode
+  "tpope/vim-rsi",
 }
