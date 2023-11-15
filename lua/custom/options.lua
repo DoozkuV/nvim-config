@@ -7,6 +7,12 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- Set tabs
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+-- Make tabs into spaces
+vim.o.expandtab = true
 -- Keep 'x' amount of lines on screen at all times
 vim.wo.scrolloff = 10
 

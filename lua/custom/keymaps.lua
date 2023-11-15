@@ -48,4 +48,6 @@ vim.keymap.set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>
 vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil" })
 vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode" })
 vim.keymap.set("n", "<leader>ts", ":set spell!<cr>", { desc = "[T]oggle [S]pellcheck" })
+
+vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "[B]uffer [R]evert" })
 -- '<leader>tm' toggles markdown-preview... see markdown.lua

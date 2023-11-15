@@ -26,7 +26,11 @@ return {
       desc =
       '[S]earch [R]ecently opened files'
     },
-    { '<leader>,',  function() require('telescope.builtin').buffers() end,    desc = '[,] Find existing buffers' },
+    {
+      '<leader>,',
+      function() require('telescope.builtin').buffers() end,
+      desc = '[,] Find existing buffers'
+    },
     {
       '<leader>/',
       function()
