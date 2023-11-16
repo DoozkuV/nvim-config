@@ -9,12 +9,16 @@ return {
     config = true,
     cmd = "Neogit",
     keys = {
-      { "<leader>gg", ":Neogit<cr>", {
-        desc = '[G]it Open'
-      }, },
-      { "<leader>gc", ":Neogit commit<cr>", {
-        desc = '[G]it [C]ommit Open'
-      }, }
+      {
+        "<leader>gg",
+        ":Neogit<cr>",
+        desc = '[G]it Open',
+      },
+      {
+        "<leader>gc",
+        ":Neogit commit<cr>",
+        desc = '[G]it [C]ommit Open',
+      }
     },
   },
   {

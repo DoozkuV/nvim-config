@@ -30,6 +30,11 @@ return {
       ':Neorg return<cr>',
       desc = '[N]eorg [R]eturn',
     },
+    {
+      '<leader>nc',
+      ':Neorg toggle-concealer<cr>',
+      desc = '[N]eorg Toggle [C]oncealer',
+    },
   },
   config = function()
     require("neorg").setup {
@@ -39,7 +44,9 @@ return {
         ["core.dirman"] = {      -- Manages neorg workspaces
           config = {
             workspaces = {
-              default = "~/Documents/neorg"
+              default = "~/Documents/neorg",
+              artificial_intelligence = "~/Notes/Artificial-Intelligence",
+              database_systems = "~/Notes/Database-Systems",
             },
             default_workspace = "default",
             index = "index.norg"

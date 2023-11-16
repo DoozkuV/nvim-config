@@ -45,9 +45,13 @@ return {
     { '<leader>gf', function() require('telescope.builtin').git_files() end,  desc = 'Search [G]it [F]iles' },
     { '<leader> ',  function() require('telescope.builtin').find_files() end, desc = '[ ] Find Files' },
     { '<leader>sh', function() require('telescope.builtin').help_tags() end,  desc = '[S]earch [H]elp' },
-    { '<leader>sw', function()
-      require('telescope.builtin').grep_string()
-    end, { desc = '[S]earch current [W]ord' } },
+    {
+      '<leader>sw',
+      function()
+        require('telescope.builtin').grep_string()
+      end,
+      desc = '[S]earch current [W]ord'
+    },
     { '<leader>sg', function() require('telescope.builtin').live_grep() end,      desc = '[S]earch by [G]rep' },
     {
       '<leader>sd',

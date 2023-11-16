@@ -87,6 +87,8 @@ return {
           telemetry = { enable = false },
         },
       },
+
+      cssls = {},
     }
 
     -- Setup neovim lua configuration
