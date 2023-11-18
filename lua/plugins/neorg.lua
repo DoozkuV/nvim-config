@@ -54,6 +54,13 @@ return {
         },
         -- Telescope integration
         ["core.integrations.telescope"] = {},
+        -- Completion information
+        ["core.completion"] = {
+          config = {
+            engine = "nvim-cmp",
+          },
+        },
+        -- ["core.integrations.nvim-cmp"] = {},
       }
 
     }

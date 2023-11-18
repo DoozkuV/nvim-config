@@ -15,8 +15,7 @@ return {
     'rafamadriz/friendly-snippets',
   },
   event = 'InsertEnter',
-  config = function ()
-
+  config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
@@ -67,8 +66,8 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'neorg' },
       },
     }
-
   end,
 }
