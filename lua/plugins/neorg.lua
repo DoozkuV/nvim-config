@@ -44,11 +44,11 @@ return {
         ["core.dirman"] = {      -- Manages neorg workspaces
           config = {
             workspaces = {
-              default = "~/Documents/neorg",
+              todo = "~/Documents/neorg",
               artificial_intelligence = "~/Notes/Artificial-Intelligence",
               database_systems = "~/Notes/Database-Systems",
             },
-            default_workspace = "default",
+            default_workspace = "todo",
             index = "index.norg"
           }
         },
