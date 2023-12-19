@@ -60,6 +60,7 @@ return {
       '[S]earch [D]iagnostics'
     },
     { '<leader>sf', function() require('telescope.builtin').find_files() end,     desc = '[S]earch [F]iles' },
+    { '<leader>sb', function() require('telescope.builtin').buffers() end,        desc = '[S]earch [B]uffers' },
 
     { '<leader>sm', function() require('telescope.builtin').man_pages() end,      desc = '[S]earch [M]an' },
 

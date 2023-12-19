@@ -27,7 +27,7 @@ vim.keymap.set("n", "<leader>.", require("oil").open, { desc = "Open parent dire
 
 -- [[ Neo-tree ]]
 -- Neo-tree file list
-vim.keymap.set("n", "<leader>op", ':Neotree toggle<cr>', { desc = "Open File Tree" })
+vim.keymap.set("n", "<leader>op", ':Neotree toggle<cr>', { desc = "[O]pen File Tree [P]" })
 -- Open Neo-tree buffer list
 vim.keymap.set("n", "<leader>ob", ':Neotree toggle show buffers right<cr>', { desc = "[O]pen [B]uffer list" })
 
