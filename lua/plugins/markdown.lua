@@ -10,9 +10,25 @@ return {
   --     -- Set the markdown command
   --     vim.keymap.set("n", "<leader>tm", ":MarkdownPreviewToggle<cr>", { desc = "[T]oggle [M]arkdown Preview" })
   --   end,
-  --   -- Plugin doesn't work without this line 
+  --   -- Plugin doesn't work without this line
   --   build = "cd app && npm install",
   -- },
   -- -- A plugin that adds several different utilities for editing md files
   -- { 'ixru/nvim-markdown', ft = 'markdown' }
+  --
+  'epwalsh/obsidian.nvim',
+  version = "*",
+  lazy = true,
+  ft = 'markdown', -- Change this later
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "School Notes",
+        path = "~/Documents/spring2024/school-notes",
+      },
+    },
+  },
 }
