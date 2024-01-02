@@ -19,7 +19,33 @@ return {
   'epwalsh/obsidian.nvim',
   version = "*",
   lazy = true,
-  ft = 'markdown', -- Change this later
+  -- Lazy loading setup - see :h obsidian.txt for more
+  event = {
+    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/spring2024/school-notes/**.md",
+    "BufNewFile " .. vim.fn.expand "~" .. "/Documents/spring2024/school-notes/**.md",
+  },
+  keys = {
+    {
+      '<leader>rn',
+      ":ObsidianNew ",
+      desc = 'Obsidian: [R] New [N]ote',
+    },
+    {
+      '<leader>rf',
+      ":ObsidianQuickSwitch<cr>",
+      desc = 'Obsidian: [R] Note [F]ind'
+    },
+    {
+      '<leader>rs',
+      ":ObsidianSearch<cr>",
+      desc = 'Obsidian: [R] Note [S]earch'
+    },
+    {
+      '<leader>rw',
+      ":ObsidianWorkspace<cr>",
+      desc = 'Obsidian: [R] Select [W]orkspace'
+    },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
@@ -30,5 +56,41 @@ return {
         path = "~/Documents/spring2024/school-notes",
       },
     },
+    note_id_func = function(title)
+      return title:lower() -- Lowercase version of title
+    end,
+
+    mappings = {
+      -- Overrides the 'gf' mapping to work kon markdown/wiki links within vault
+      ["gf"] = {
+        action = function()
+          return require("obsidian").util.gf_passthrough()
+        end,
+        opts = {
+          noremap = false,
+          expr = true,
+          buffer = true,
+          desc = "Go to Obsidian Link"
+        }
+      },
+      ["<LocalLeader>c"] = {
+        action = function()
+          return require("obsidian").util.toggle_checkbox()
+        end,
+        opts = { buffer = true, desc = "Toggle [C]heckbox" },
+      },
+      ["<LocalLeader>o"] = {
+        action = ":ObsidianOpen<cr>",
+        opts = { buffer = true, desc = "[O]pen Obsidian" },
+      },
+      ["<LocalLeader>V"] = {
+        action = ":ObsidianPasteImg<cr>",
+        opts = { buffer = true, desc = "[V] Paste Image" },
+      },
+      ["<LocalLeader>r"] = {
+        action = ":ObsidianRename ",
+        opts = { buffer = true, desc = "[R]ename Note" },
+      },
+    }
   },
 }
