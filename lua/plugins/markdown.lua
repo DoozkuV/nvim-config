@@ -47,7 +47,7 @@ return {
     },
     {
       '<leader>rw',
-      ":ObsidianWorkspace<cr>",
+      ":ObsidianWorkspace ",
       desc = 'Obsidian: [R] Select [W]orkspace'
     },
   },
@@ -57,12 +57,22 @@ return {
   opts = {
     workspaces = {
       {
-        name = "School Notes",
+        name = "School",
         path = "~/Documents/spring2024/school-notes",
       },
+      {
+        name = "Arden",
+        path = "~/Documents/DND/arden-campaign",
+      },
     },
+    -- Code for naming new notes
     note_id_func = function(title)
-      return title:lower() -- Lowercase version of title
+      return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower() -- Lowercase version of title
+    end,
+    -- Code for opening urls
+    follow_url_func = function(url)
+      -- Open the URL in the default web browser.
+      vim.fn.jobstart({ "xdg-open", url }) -- linux
     end,
 
     mappings = {
