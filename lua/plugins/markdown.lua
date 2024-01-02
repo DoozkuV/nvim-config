@@ -21,8 +21,13 @@ return {
   lazy = true,
   -- Lazy loading setup - see :h obsidian.txt for more
   event = {
+    -- This syntax is required for the file path expansion
+    -- School notes
     "BufReadPre " .. vim.fn.expand "~" .. "/Documents/spring2024/school-notes/**.md",
     "BufNewFile " .. vim.fn.expand "~" .. "/Documents/spring2024/school-notes/**.md",
+    -- Dungeons and Dragons Notes
+    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/DND/arden-campaign/**.md",
+    "BufNewFile " .. vim.fn.expand "~" .. "/Documents/DND/arden-campaign/**.md",
   },
   keys = {
     {
