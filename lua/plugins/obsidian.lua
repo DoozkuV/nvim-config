@@ -34,6 +34,16 @@ return {
       ":ObsidianWorkspace ",
       desc = 'Obsidian: [R] Select [W]orkspace'
     },
+    {
+      '<leader>rd',
+      ":ObsidianToday<cr>",
+      desc = 'Obsidian: [R] Open [D]aily Note',
+    },
+    {
+      '<leader>rt',
+      ":ObsidianTemplate<cr>",
+      desc = 'Obsidian: [R] Create From [T]emplate',
+    },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
