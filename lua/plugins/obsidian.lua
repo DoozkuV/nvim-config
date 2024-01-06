@@ -53,10 +53,20 @@ return {
       {
         name = "school",
         path = "~/Documents/spring2024/school-notes",
+        overrides = {
+          daily_notes = {
+            folder = "dailies",
+          }
+        }
       },
       {
         name = "arden",
         path = "~/Documents/DND/arden-campaign",
+        overrides = {
+          daily_notes = {
+            folder = "sessions",
+          }
+        }
       },
     },
     -- Use cwd to determine workspace
