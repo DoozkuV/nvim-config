@@ -56,7 +56,11 @@ return {
         overrides = {
           daily_notes = {
             folder = "dailies",
-          }
+          },
+          -- Return the title with no names or other modifications
+          note_id_func = function(title)
+            return title
+          end,
         }
       },
       {
