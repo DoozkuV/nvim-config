@@ -88,6 +88,7 @@ return {
         },
       },
 
+      jsonls = {},
       cssls = {},
     }
 
