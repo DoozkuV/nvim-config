@@ -1,5 +1,4 @@
 -- Plugins relating to completion in nvim
-
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
@@ -13,8 +12,12 @@ return {
 
     -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
+
+    -- Adds completion to the cmdline
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-buffer'
   },
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
@@ -22,6 +25,7 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
 
+    -- Tab down and up functions for use later in the config
     local tab_down = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -41,6 +45,24 @@ return {
         fallback()
       end
     end, { 'i', 's' })
+
+    local tab_down_cmdline = function(fallback)
+      local cmp = require("cmp")
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end
+
+    local tab_up_cmdline = function(fallback)
+      local cmp = require("cmp")
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end
 
     cmp.setup {
       snippet = {
@@ -69,5 +91,56 @@ return {
         { name = 'neorg' },
       },
     }
+
+    -- '/' cmdline setup
+    cmp.setup.cmdline('/', {
+      mapping = cmp.mapping.preset.cmdline({
+        -- ['<C-n>'] = cmp.mapping.select_next_item(),
+        -- ['<C-p>'] = cmp.mapping.select_prev_item(),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        -- ['<C-Space>'] = cmp.mapping.complete {},
+        -- ['<CR>'] = cmp.mapping.confirm {
+        --   behavior = cmp.ConfirmBehavior.Replace,
+        --   select = true,
+        -- },
+        ['<C-j>'] = { c = tab_down_cmdline },
+        ['<Tab>'] = { c = tab_down_cmdline },
+        ['<C-k>'] = { c = tab_up_cmdline },
+        ['<S-Tab>'] = { c = tab_up_cmdline },
+      }),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    -- `:` cmdline setup
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline({
+        -- ['<C-n>'] = cmp.mapping.select_next_item(),
+        -- ['<C-p>'] = cmp.mapping.select_prev_item(),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        -- ['<C-Space>'] = cmp.mapping.complete {},
+        -- ['<CR>'] = cmp.mapping.confirm {
+        --   behavior = cmp.ConfirmBehavior.Replace,
+        --   select = true,
+        -- },
+        ['<C-j>'] = { c = tab_down_cmdline },
+        ['<Tab>'] = { c = tab_down_cmdline },
+        ['<C-k>'] = { c = tab_up_cmdline },
+        ['<S-Tab>'] = { c = tab_up_cmdline },
+      }),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' }
+          }
+        }
+      })
+    })
   end,
 }
