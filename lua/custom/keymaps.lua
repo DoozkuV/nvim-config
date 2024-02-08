@@ -13,13 +13,12 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz")
 
 -- Binding in insert mode for deleting the last block of text
 -- Apparently <C-BS> auto binds to <C-H> in st...
--- vim.keymap.set('i', '<C-H>', "<C-W>")
--- Instantly go to the beginning and end of lines in insert mode (Emacs style)
--- vim.keymap.set('i', '<C-e>', '<C-o>$')
--- vim.keymap.set('i', '<C-a>', '<C-o>_')
+-- But not in alacritty :)
+vim.keymap.set('i', '<C-BS>', "<C-W>")
 
 -- Better keybind for switching to last buffer
 vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
+
 
 -- [[ Oil ]]
 -- Open Oil file manager
