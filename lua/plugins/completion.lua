@@ -47,7 +47,6 @@ return {
     end, { 'i', 's' })
 
     local tab_down_cmdline = function(fallback)
-      local cmp = require("cmp")
       if cmp.visible() then
         cmp.select_next_item()
       else
@@ -56,7 +55,6 @@ return {
     end
 
     local tab_up_cmdline = function(fallback)
-      local cmp = require("cmp")
       if cmp.visible() then
         cmp.select_prev_item()
       else
