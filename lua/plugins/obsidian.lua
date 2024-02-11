@@ -14,11 +14,11 @@ return {
     "BufNewFile " .. vim.fn.expand "~" .. "/Documents/DND/arden-campaign/**.md",
   },
   keys = {
-    {
-      '<leader>rn',
-      ":ObsidianNew ",
-      desc = 'Obsidian: [R] New [N]ote',
-    },
+    -- {
+    --   '<leader>rn',
+    --   ":ObsidianNew ",
+    --   desc = 'Obsidian: [R] New [N]ote',
+    -- },
     {
       '<leader>rf',
       ":ObsidianQuickSwitch<cr>",
