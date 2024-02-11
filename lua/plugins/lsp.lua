@@ -117,6 +117,11 @@ return {
       end
     }
 
+    -- Setup racket lsp server (doesn't work with mason)
+    require('lspconfig').racket_langserver.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
 
     -- AUTOFORMATTING
     -- Switch for controlling whether you want autoformatting.
