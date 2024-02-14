@@ -90,6 +90,7 @@ return {
 
       jsonls = {},
       cssls = {},
+      tsserver = {},
     }
 
     -- Setup neovim lua configuration
