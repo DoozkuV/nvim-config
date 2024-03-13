@@ -20,7 +20,7 @@ return {
   ]]
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     keys = {
-      "ys", "ds", "cs",
+      "ys", "ds", "cs", 'S'
     },
     config = function()
       require("nvim-surround").setup() -- Insert setup here
