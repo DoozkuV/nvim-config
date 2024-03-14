@@ -1,7 +1,7 @@
 -- Stores all the filetypes to be supported by treesitter
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json',
-  'markdown', 'markdown_inline' }
+  'markdown', 'markdown_inline', 'racket' }
 
 return {
   -- Highlight, edit, and navigate code
