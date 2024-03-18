@@ -13,6 +13,10 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 -- Make tabs into spaces
 vim.o.expandtab = true
+
+-- Make long lines wrap at word endings
+vim.o.linebreak = true
+
 -- Keep 'x' amount of lines on screen at all times
 vim.wo.scrolloff = 10
 
