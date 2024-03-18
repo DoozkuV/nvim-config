@@ -1,11 +1,7 @@
 return {
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
-
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
 
@@ -47,7 +43,7 @@ return {
 
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+      -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
       -- Lesser used LSP functionality
       nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
