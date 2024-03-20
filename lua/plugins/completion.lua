@@ -86,7 +86,8 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'neorg' },
+        -- Commented this out as well - see neorg.lua
+        -- { name = 'neorg' },
       },
     }
 

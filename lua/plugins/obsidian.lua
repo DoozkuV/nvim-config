@@ -1,7 +1,8 @@
 -- Define variables for the workspaces here
 -- These are considered to be relative to the home dir
 local second_brain_dir = "/Documents/Obsidian/second-brain"
-local arden_campaign_dir = "/Documents/DND/arden_campaign"
+local arden_campaign_dir = "/Documents/DND/arden-campaign"
+local obsidian_directories = { second_brain_dir, arden_campaign_dir }
 -- Plugin for managing obsidian notes
 return {
   'epwalsh/obsidian.nvim',
@@ -18,11 +19,11 @@ return {
     "BufNewFile " .. vim.fn.expand "~" .. arden_campaign_dir .. "/**.md",
   },
   keys = {
-    -- {
-    --   '<leader>rn',
-    --   ":ObsidianNew ",
-    --   desc = 'Obsidian: [R] New [N]ote',
-    -- },
+    {
+      '<leader>rc',
+      ":ObsidianNew ",
+      desc = 'Obsidian: [R] New [C]reate',
+    },
     {
       '<leader>rf',
       ":ObsidianQuickSwitch<cr>",
@@ -48,6 +49,24 @@ return {
       ":ObsidianTemplate<cr>",
       desc = 'Obsidian: [R] Create From [T]emplate',
     },
+    {
+      '<leader>rr',
+      function()
+        -- Get all listed buffers
+        local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+        for _, buffer in ipairs(buffers) do
+          for _, directory in ipairs(obsidian_directories) do
+            -- If the listed buffer's directory is the directory
+            -- delete the buffer (not forcibly)
+            if vim.startswith(vim.fn.fnamemodify(buffer.name, ":~:h"), "~" .. directory) then
+              vim.api.nvim_buf_delete(buffer.bufnr, {})
+              break
+            end
+          end
+        end
+      end,
+      desc = "Obsidian: [R] [R]eturn"
+    }
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -60,6 +79,7 @@ return {
         overrides = {
           daily_notes = {
             folder = "dailies",
+            template = "templates/daily.md"
           },
           -- Return the title with no names or other modifications
           -- note_id_func = function(title)
@@ -88,9 +108,9 @@ return {
     --   return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower() -- Lowercase version of title
     -- end,
     -- New function for returning notes - we just want the title.
-    -- note_id_func = function(title)
-    --   return title
-    -- end,
+    note_id_func = function(title)
+      return title
+    end,
     -- Code for opening urls
     follow_url_func = function(url)
       -- Open the URL in the default web browser.
@@ -117,7 +137,15 @@ return {
         opts = { buffer = true, desc = "Toggle [C]heckbox" },
       },
       ["<LocalLeader>o"] = {
-        action = ":ObsidianOpen<cr>",
+        -- action = ":ObsidianOpen<cr>",
+        action = function()
+          vim.fn.system([[
+            notify-send -u low -t 1500 \
+            -i /usr/share/pixmaps/obsidian.png \
+            'Obsidian is Opening!'
+            ]])
+          vim.cmd('ObsidianOpen')
+        end,
         opts = { buffer = true, desc = "[O]pen Obsidian" },
       },
       ["<LocalLeader>V"] = {

@@ -4,7 +4,9 @@ return {
     -- Optional dependency
     event = 'InsertEnter',
     config = function()
-      require("nvim-autopairs").setup {
+      local npairs = require("nvim-autopairs")
+
+      npairs.setup {
         disable_filetype = { "sh", "zsh", "TeleScopePrompt", "spectre_panel", "norg" },
       }
       -- If you want to automatically add `(` after selecting a function or method
@@ -14,6 +16,23 @@ return {
         'confirm_done',
         cmp_autopairs.on_confirm_done()
       )
+      -- Now we will define custom rules
+      local Rule = require("nvim-autopairs.rule")
+      local cond = require("nvim-autopairs.conds")
+
+      -- MARKDOWN RULES
+      npairs.add_rules({
+        Rule("*", "*", "markdown")
+        -- don't add a pair if prev char is not a *
+        -- :with_pair(cond.not_before_regex("[^\\*]"))
+        -- -- don't add a pair if next char is a double *
+        --     :with_pair(cond.not_after_regex("\\*\\*"))
+      })
+
+      -- LISP RULES
+      local lisp_filetypes = { "scheme", "clojure", "racket", "lisp" }
+      npairs.get_rules("'")[1].not_filetypes = lisp_filetypes
+      npairs.get_rules("'")[1]:with_pair(cond.not_after_text("["))
     end,
   },
 }

@@ -51,6 +51,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- For the obsidian plugin
+vim.opt.conceallevel = 2
+
 -- Set background to be transparent
 vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
 
