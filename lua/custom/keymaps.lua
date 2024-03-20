@@ -14,7 +14,11 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz")
 -- Binding in insert mode for deleting the last block of text
 -- Apparently <C-BS> auto binds to <C-H> in st...
 -- But not in alacritty :)
-vim.keymap.set('i', '<C-BS>', "<C-W>")
+if vim.env.TERM == "wezterm" then
+  vim.keymap.set('i', '<C-BS>', "<C-W>")
+else
+  vim.keymap.set('i', '<C-H>', "<C-W>")
+end
 
 -- Better keybind for switching to last buffer
 vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
