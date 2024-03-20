@@ -22,11 +22,8 @@ return {
 
       -- MARKDOWN RULES
       npairs.add_rules({
-        Rule("*", "*", "markdown")
-        -- don't add a pair if prev char is not a *
-        -- :with_pair(cond.not_before_regex("[^\\*]"))
-        -- -- don't add a pair if next char is a double *
-        --     :with_pair(cond.not_after_regex("\\*\\*"))
+        Rule("*", "*", "markdown"):with_move(cond.done()),
+        Rule("**", "*", "markdown"):with_move(cond.not_after_text("*"))
       })
 
       -- LISP RULES

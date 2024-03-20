@@ -139,11 +139,11 @@ return {
       ["<LocalLeader>o"] = {
         -- action = ":ObsidianOpen<cr>",
         action = function()
-          vim.fn.system([[
-            notify-send -u low -t 1500 \
-            -i /usr/share/pixmaps/obsidian.png \
-            'Obsidian is Opening!'
-            ]])
+          vim.fn.system({
+            "notify-send -u low -t 1500",
+            "-i /usr/share/pixmaps/obsidian.png",
+            "'Obsidian is Opening!'",
+          })
           vim.cmd('ObsidianOpen')
         end,
         opts = { buffer = true, desc = "[O]pen Obsidian" },
