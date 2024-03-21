@@ -14,11 +14,7 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz")
 -- Binding in insert mode for deleting the last block of text
 -- Apparently <C-BS> auto binds to <C-H> in st...
 -- But not in alacritty :)
-if vim.env.TERM == "wezterm" then
-  vim.keymap.set('i', '<C-BS>', "<C-W>")
-else
-  vim.keymap.set('i', '<C-H>', "<C-W>")
-end
+vim.keymap.set('i', '<C-BS>', "<C-W>")
 
 -- Better keybind for switching to last buffer
 vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
@@ -52,7 +48,7 @@ vim.keymap.set("n", "<leader>oi", ':InspectTree<cr>', { desc = "[O]pen [I]nspect
 -- [[ Toggles ]]
 vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil" })
 vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode" })
-vim.keymap.set("n", "<leader>ts", ":set spell!<cr>", { desc = "[T]oggle [S]pellcheck" })
+vim.keymap.set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "[T]oggle [S]pellcheck" })
 
 vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "[B]uffer [R]evert" })
 -- '<leader>tm' toggles markdown-preview... see markdown.lua
