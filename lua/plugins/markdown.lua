@@ -1,3 +1,4 @@
+-- See also obsidian.lua for more markdown stuff
 return {
   "iamcco/markdown-preview.nvim",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

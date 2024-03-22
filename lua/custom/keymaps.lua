@@ -44,6 +44,8 @@ vim.keymap.set("n", "<leader>om", ':Mason<cr>', { desc = "[O]pen [M]ason" })
 vim.keymap.set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>', { desc = "[O]pen [T]erminal" })
 -- Opens the "Inspect" Treesitter view
 vim.keymap.set("n", "<leader>oi", ':InspectTree<cr>', { desc = "[O]pen [I]nspect Tree" })
+-- Opens the lspinfo view
+vim.keymap.set("n", "<leader>os", ':LspInfo<cr>', { desc = "[O]pen [S]erver Info" })
 
 -- [[ Toggles ]]
 vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil" })

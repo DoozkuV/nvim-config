@@ -3,20 +3,28 @@
 local second_brain_dir = "/Documents/Obsidian/second-brain"
 local arden_campaign_dir = "/Documents/DND/arden-campaign"
 local obsidian_directories = { second_brain_dir, arden_campaign_dir }
+
+
+-- Lazy loading setup - see :h obsidian.txt for more
+-- This code auto-generates the code needed for any number of workspaces
+local workspace_event_strings = {}
+for _, dir in ipairs(obsidian_directories) do
+  local path = vim.fn.expand "~" .. dir .. "/**.md"
+  table.insert(workspace_event_strings, "BufReadPre " .. path)
+  table.insert(workspace_event_strings, "BufNewFile " .. path)
+end
 -- Plugin for managing obsidian notes
 return {
   'epwalsh/obsidian.nvim',
   version = "*",
   lazy = true,
-  -- Lazy loading setup - see :h obsidian.txt for more
-  event = {
-    -- This syntax is required for the file path expansion
-    -- School notes
-    "BufReadPre " .. vim.fn.expand "~" .. second_brain_dir .. "/**.md",
-    "BufNewFile " .. vim.fn.expand "~" .. second_brain_dir .. "/**.md",
-    -- Dungeons and Dragons Notes
-    "BufReadPre " .. vim.fn.expand "~" .. arden_campaign_dir .. "/**.md",
-    "BufNewFile " .. vim.fn.expand "~" .. arden_campaign_dir .. "/**.md",
+  event = workspace_event_strings,
+  cmd = {
+    "ObsidianQuickSwitch",
+    "ObsidianNew",
+    "ObsidianToday",
+    "ObsidianSearch",
+    "ObsidianWorkspace"
   },
   keys = {
     {
