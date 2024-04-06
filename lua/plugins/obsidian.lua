@@ -57,7 +57,7 @@ return {
       ":ObsidianTemplate<cr>",
       desc = 'Obsidian: [R] Create From [T]emplate',
     },
-    {
+    { -- Function to delete all open Obsidian Buffers
       '<leader>rr',
       function()
         -- Get all listed buffers

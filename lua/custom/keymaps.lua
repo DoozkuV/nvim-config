@@ -12,13 +12,13 @@ vim.keymap.set('n', '<C-u>', "<C-u>zz")
 vim.keymap.set('n', '<C-d>', "<C-d>zz")
 
 -- Binding in insert mode for deleting the last block of text
--- Apparently <C-BS> auto binds to <C-H> in st...
--- But not in alacritty :)
+-- Backspace tends to be binded to ctrl-h keymap in many terminals
+-- So we just bind it to both of these keymaps.
 vim.keymap.set('i', '<C-BS>', "<C-W>")
+vim.keymap.set('i', '<C-H>', "<C-W>")
 
 -- Better keybind for switching to last buffer
 vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
-
 
 -- [[ Oil ]]
 -- Open Oil file manager

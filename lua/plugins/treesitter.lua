@@ -35,7 +35,7 @@ return {
 
   build = ':TSUpdate',
   -- Filetypes
-  ft = supported_languages,
+  ft = { supported_languages, "help" },
   -- This gets passed into the "Plugin.config()" value
   config = function()
     require('nvim-treesitter.configs').setup {
