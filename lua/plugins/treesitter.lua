@@ -4,6 +4,7 @@ local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'query',
   'scheme' }
 
+
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
@@ -35,7 +36,7 @@ return {
 
   build = ':TSUpdate',
   -- Filetypes
-  ft = { supported_languages, "help" },
+  ft = supported_languages,
   -- This gets passed into the "Plugin.config()" value
   config = function()
     require('nvim-treesitter.configs').setup {
