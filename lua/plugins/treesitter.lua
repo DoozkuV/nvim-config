@@ -2,7 +2,7 @@
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'query',
-  'scheme' }
+  'scheme', 'fennel', }
 
 
 return {
