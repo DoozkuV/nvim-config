@@ -1,7 +1,7 @@
 -- Conjure enables REPL like functionality in NVIM, like Emacs
 return {
   "Olical/conjure",
-  ft = { "clojure", "fennel", "lua" },
+  ft = { "clojure", "fennel", "lua", "racket" },
   cmd = { "ConjureSchool" },
   -- cmp integration
   dependencies = {
