@@ -2,7 +2,7 @@
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'query',
-  'scheme', 'fennel', }
+  'scheme', 'fennel', 'bash', }
 
 
 return {
@@ -39,6 +39,7 @@ return {
   ft = supported_languages,
   -- This gets passed into the "Plugin.config()" value
   config = function()
+    --@diagnostic disable-next-line: missing-parameter
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = supported_languages,
@@ -94,10 +95,10 @@ return {
         swap = {
           enable = true,
           swap_next = {
-            ['<leader>a'] = '@parameter.inner',
+            ['<leader>p'] = '@parameter.inner',
           },
           swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
+            ['<leader>P'] = '@parameter.inner',
           },
         },
       },
