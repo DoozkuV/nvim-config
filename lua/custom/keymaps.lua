@@ -24,12 +24,6 @@ vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
 -- Open Oil file manager
 vim.keymap.set("n", "<leader>.", require("oil").open, { desc = "Open parent directory" })
 
--- [[ Neo-tree ]]
--- Neo-tree file list
-vim.keymap.set("n", "<leader>op", ':Neotree toggle<cr>', { desc = "[O]pen File Tree [P]" })
--- Open Neo-tree buffer list
-vim.keymap.set("n", "<leader>ob", ':Neotree toggle show buffers right<cr>', { desc = "[O]pen [B]uffer list" })
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })

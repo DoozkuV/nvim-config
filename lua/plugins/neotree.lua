@@ -13,4 +13,19 @@ return {
   config = function()
     require('neo-tree').setup {}
   end,
+  keys = {
+    {
+      '<leader>op',
+      ':Neotree toggle<cr>',
+      desc = "[O]pen File Tree [P]",
+      silent = true
+    },
+    {
+      '<leader>ob',
+      ':Neotree toggle show buffers right<cr>',
+      desc = "[O]pen [B]uffer list",
+      silent = true
+    }
+
+  }
 }
