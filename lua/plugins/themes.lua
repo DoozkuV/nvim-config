@@ -1,4 +1,14 @@
 return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
+  opts = {
+    transparent_background = true,
+    flavour = "mocha",
+  },
+  config = function()
+    vim.cmd.colorscheme('catppuccin')
+  end,
   -- Theme inspired by Atom
   -- 'ellisonleao/gruvbox.nvim',
   -- priority = 1000,
@@ -10,14 +20,4 @@ return {
   --   vim.cmd.colorscheme 'gruvbox'
   -- end,
   -- See https://github.com/catppuccin/nvim
-  "catppuccin/nvim",
-  name = "catppuccin",
-  priority = 1000,
-  opts = {
-    transparent_background = true,
-    flavour = "mocha",
-  },
-  config = function()
-    vim.cmd.colorscheme('catppuccin')
-  end,
 }
