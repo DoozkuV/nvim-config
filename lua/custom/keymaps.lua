@@ -32,19 +32,20 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 
 -- Open Functions
-vim.keymap.set("n", "<leader>ol", ':Lazy<cr>', { desc = "[O]pen [L]azy" })
-vim.keymap.set("n", "<leader>om", ':Mason<cr>', { desc = "[O]pen [M]ason" })
+vim.keymap.set("n", "<leader>ol", ':Lazy<cr>', { desc = "[O]pen [L]azy", silent = true })
+vim.keymap.set("n", "<leader>om", ':Mason<cr>', { desc = "[O]pen [M]ason", silent = true })
 -- The following runs a command that opens a new terminal window
-vim.keymap.set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>', { desc = "[O]pen [T]erminal" })
+vim.keymap.set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>',
+  { desc = "[O]pen [T]erminal", silent = true })
 -- Opens the "Inspect" Treesitter view
-vim.keymap.set("n", "<leader>oi", ':InspectTree<cr>', { desc = "[O]pen [I]nspect Tree" })
+vim.keymap.set("n", "<leader>oi", ':InspectTree<cr>', { desc = "[O]pen [I]nspect Tree", silent = true })
 -- Opens the lspinfo view
-vim.keymap.set("n", "<leader>os", ':LspInfo<cr>', { desc = "[O]pen [S]erver Info" })
+vim.keymap.set("n", "<leader>os", ':LspInfo<cr>', { desc = "[O]pen [S]erver Info", silent = true })
 
 -- [[ Toggles ]]
-vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil" })
-vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode" })
-vim.keymap.set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "[T]oggle [S]pellcheck" })
+vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil", silent = true })
+vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode", silent = true })
+vim.keymap.set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "[T]oggle [S]pellcheck", silent = true })
 
-vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "[B]uffer [R]evert" })
+vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "[B]uffer [R]evert", silent = true })
 -- '<leader>tm' toggles markdown-preview... see markdown.lua
