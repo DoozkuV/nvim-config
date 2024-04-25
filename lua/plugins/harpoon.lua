@@ -5,26 +5,24 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" }, -- "nvim-telescope/telescope.nvim" },
   config = function()
     local harpoon = require("harpoon")
-    harpoon:setup()
-    -- harpoon:setup({}) -- Mandatory for harpoon to function
-
-    -- basic telescope config
-    -- local conf = require("telescope.config").values
-    -- local function toggle_telescope(harpoon_files)
-    --   local file_paths = {}
-    --   for _, item in ipairs(harpoon_files.items) do
-    --     table.insert(file_paths, item.value)
-    --   end
-    --
-    --   require("telescope.pickers").new({}, {
-    --     prompt_title = "Harpoon",
-    --     finder = require("telescope.finders").new_table({
-    --       results = file_paths,
-    --     }),
-    --     previewer = conf.file_previewer({}),
-    --     sorter = conf.generic_sorter({}),
-    --   }):find()
-    -- end
+    harpoon:setup({
+      -- Set up running shell commands in another buffer
+      popup = {
+        create_list_item = function(possible_value)
+          local cmd = vim.fn.input("Enter cmd: ")
+          return {
+            value = cmd,
+          }
+        end,
+        select = function(list_item, list, option)
+          if vim.fn.getenv('TMUX') then
+            vim.fn.system("tmux popup -d '#{pane_current_path}' "
+              .. "-w 75% -h 80% "
+              .. list_item.value)
+          end
+        end
+      }
+    })
   end,
 
   keys = {
@@ -60,6 +58,39 @@ return {
       '<leader>l',
       function() require("harpoon"):list():select(4) end,
       desc = 'Harpoon [4]'
+    },
+    {
+      '<leader>cm',
+      function() require("harpoon"):list('popup'):add() end,
+      desc = '[C]ommand [M]ark'
+    },
+    {
+      '<leader>cq',
+      function()
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list('popup'))
+      end,
+      desc = '[C]ommand [Q]uick Menu'
+    },
+    {
+      '<leader>ch',
+      function() require("harpoon"):list('popup'):select(1) end,
+      desc = 'Harpoon Command [1]'
+    },
+    {
+      '<leader>cj',
+      function() require("harpoon"):list('popup'):select(2) end,
+      desc = 'Harpoon Command [2]'
+    },
+    {
+      '<leader>ck',
+      function() require("harpoon"):list('popup'):select(3) end,
+      desc = 'Harpoon Command [3]'
+    },
+    {
+      '<leader>cl',
+      function() require("harpoon"):list('popup'):select(4) end,
+      desc = 'Harpoon Command [4]'
     },
     {
       '<C-M-p>',
