@@ -5,9 +5,10 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'auto',   -- Auto set theme
+      theme = 'auto',
       component_separators = '|',
       section_separators = '',
+      -- theme = 'pywal16-nvim',
     },
   },
   -- enabled = false,
