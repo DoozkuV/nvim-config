@@ -72,6 +72,10 @@ return {
       gopls = {},
       pylsp = {},
       rust_analyzer = {},
+      elixirls = {
+        filetypes = { "elixir", "eelixir", "heex", "surface" },
+        single_file_support = true
+      },
       sqlls = { filetypes = { 'sql', 'mysql' } },
       bashls = { filetypes = { 'sh', 'zsh' }, },
       -- tsserver = {},
