@@ -1,8 +1,15 @@
+-- Add hyprlang filetype support
+vim.filetype.add {
+  extension = { rasi = 'rasi' },
+  pattern = {
+    ['.*/hypr/.*%.conf'] = 'hyprlang',
+  }
+}
 -- Stores all the filetypes to be supported by treesitter
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
-  'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json',
-  'markdown', 'markdown_inline', 'racket', 'javascript', 'query',
-  'scheme', 'fennel', 'bash', }
+  'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
+  'markdown', 'markdown_inline', 'racket', 'javascript', 'typescript',
+  'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi' }
 
 
 return {
@@ -39,7 +46,7 @@ return {
   ft = supported_languages,
   -- This gets passed into the "Plugin.config()" value
   config = function()
-    --@diagnostic disable-next-line: missing-parameter
+    --@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = supported_languages,
