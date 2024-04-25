@@ -3,6 +3,7 @@ return {
   "Olical/conjure",
   ft = { "clojure", "fennel", "lua", "racket" },
   cmd = { "ConjureSchool" },
+  enabled = false,
   -- cmp integration
   dependencies = {
     {
