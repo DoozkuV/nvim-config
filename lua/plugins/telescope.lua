@@ -15,8 +15,10 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    'nvim-telescope/telescope-ui-select.nvim'
   },
-  cmd = "Telescope",
+  -- Gen keybind is for integration with the LLM Dropdown.
+  cmd = { "Telescope", "Gen" },
   ft = 'mason',
   keys = {
 
@@ -99,9 +101,15 @@ return {
           },
         },
       },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown {}
+        }
+      }
     }
-    -- Enable telescope fzf native, if installed
+    -- Enable extensions, if installed
     pcall(require('telescope').load_extension, 'fzf')
+    pcall(require('telescope').load_extension, 'ui-select')
     -- NOTE: Telescope bindings moved to 'keymaps.lua'
   end,
 }

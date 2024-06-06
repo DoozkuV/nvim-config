@@ -1,7 +1,6 @@
 -- Define variables for the workspaces here
--- These are considered to be relative to the home dir
-local second_brain_dir = "/Documents/Obsidian/second-brain"
-local arden_campaign_dir = "/Documents/DND/arden-campaign"
+local second_brain_dir = "~/Documents/second-brain"
+local arden_campaign_dir = "~/Documents/DND/arden-campaign"
 local obsidian_directories = { second_brain_dir, arden_campaign_dir }
 
 
@@ -9,7 +8,7 @@ local obsidian_directories = { second_brain_dir, arden_campaign_dir }
 -- This code auto-generates the code needed for any number of workspaces
 local workspace_event_strings = {}
 for _, dir in ipairs(obsidian_directories) do
-  local path = vim.fn.expand "~" .. dir .. "/**.md"
+  local path = vim.fn.expand(dir .. "/**.md")
   table.insert(workspace_event_strings, "BufReadPre " .. path)
   table.insert(workspace_event_strings, "BufNewFile " .. path)
 end
@@ -83,7 +82,7 @@ return {
     workspaces = {
       {
         name = "second-brain",
-        path = "~" .. second_brain_dir,
+        path = second_brain_dir,
         overrides = {
           daily_notes = {
             folder = "dailies",
@@ -97,7 +96,7 @@ return {
       },
       {
         name = "arden",
-        path = "~" .. arden_campaign_dir,
+        path = arden_campaign_dir,
         overrides = {
           daily_notes = {
             folder = "sessions",
