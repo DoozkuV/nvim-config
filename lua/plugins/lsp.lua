@@ -10,6 +10,7 @@ return {
     { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
     -- Additional lua configuration, makes nvim stuff amazing!
+    -- TODO: Replace with lazydev.nvim
     'folke/neodev.nvim',
   },
   event = { "BufReadPre", "BufNewFile" },
@@ -87,7 +88,8 @@ return {
           telemetry = { enable = false },
         },
       },
-
+      svelte = {},
+      emmet_ls = {},
       jsonls = {},
       cssls = {},
       tsserver = {},

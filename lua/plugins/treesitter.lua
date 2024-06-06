@@ -9,7 +9,9 @@ vim.filetype.add {
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'typescript',
-  'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi' }
+  'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi', 'svelte',
+  'zig'
+}
 
 
 return {

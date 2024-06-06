@@ -10,6 +10,7 @@ return {
       -- Disable these commands - they are really annoying!
       ["H"] = "actions.parent",
       ["L"] = "actions.select",
+      ["T"] = "actions.toggle_hidden",
     }
   },
   -- Optional dependencies

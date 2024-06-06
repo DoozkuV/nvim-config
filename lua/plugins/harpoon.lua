@@ -9,9 +9,8 @@ return {
       -- Set up running shell commands in another buffer
       popup = {
         create_list_item = function(possible_value)
-          local cmd = vim.fn.input("Enter cmd: ")
           return {
-            value = cmd,
+            value = vim.fn.input({ prompt = "Enter cmd: ", completion = 'shellcmd' }),
           }
         end,
         select = function(list_item, list, option)

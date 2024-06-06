@@ -1,5 +1,5 @@
 -- Useful plugin to show you pending keybinds.
-return   {
+return {
   'folke/which-key.nvim',
   opts = {},
 }
