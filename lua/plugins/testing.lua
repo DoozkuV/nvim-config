@@ -1,8 +1,8 @@
 -- Checks if a path is valid
 local valid_projects = {}
-local function validate_plugin_dir(cfg)
-  if vim.fn.isdirectory(cfg.dir) == 1 then
-    table.insert(valid_projects, cfg)
+local function validate_plugin_dir(plugin_spec)
+  if vim.fn.isdirectory(plugin_spec.dir) == 1 then
+    table.insert(valid_projects, plugin_spec)
   end
 end
 

@@ -1,4 +1,6 @@
 -- Define variables for the workspaces here
+-- TODO: Figure out a way to set these directories by device instead 
+-- of globally in this config
 local second_brain_dir = "~/Documents/second-brain"
 local arden_campaign_dir = "~/Documents/DND/arden-campaign"
 local obsidian_directories = { second_brain_dir, arden_campaign_dir }
