@@ -6,13 +6,14 @@ local function validate_plugin_dir(plugin_spec)
   end
 end
 
--- validate_plugin_dir({
---   dir = "/home/doozku/Projects/Neovim/scratch-buffer",
---   name = "scratch-buffer",
---   config = function()
---     require("scratch-buffer").setup()
---   end
--- })
+validate_plugin_dir({
+  dir = "/home/doozku/Projects/Neovim/scratch-buffer",
+  name = "scratch-buffer",
+  config = function()
+    require("scratch-buffer").setup()
+  end,
+  enabled = false
+})
 
 validate_plugin_dir({
   dir = "/home/doozku/Projects/Neovim/spell-check",
