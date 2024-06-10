@@ -165,7 +165,7 @@ return {
           for _, workspace in ipairs(workspaces) do
             -- If the listed buffer's directory is the directory
             -- delete the buffer (not forcibly)
-            if vim.startswith(vim.fn.fnamemodify(buffer.name, ":~:h"), "~" .. workspace.path) then
+            if vim.startswith(vim.fn.fnamemodify(buffer.name, ":~:h"), workspace.path) then
               vim.api.nvim_buf_delete(buffer.bufnr, {})
               break
             end
