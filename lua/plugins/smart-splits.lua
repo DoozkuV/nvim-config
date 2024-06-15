@@ -1,3 +1,5 @@
+-- A plugin to replace tmux integration - allows the same integration but with
+-- more terminal options.
 return {
   'mrjones2014/smart-splits.nvim',
   config = function()
@@ -9,4 +11,5 @@ return {
     vim.keymap.set('n', '<C-l>', smart_splits.move_cursor_right)
     vim.keymap.set('n', '<C-\\>', smart_splits.move_cursor_previous)
   end,
+  lazy = false
 }

@@ -27,6 +27,10 @@ return {
     end
   },
 
+  -- NOTE: As of Neovim v10, this feature is now native in Neovim
+  -- Nevertheless, this plugin seems to provide more intelligent features
+  -- so it will stick around in this configuration.
+  -- See https://github.com/numToStr/Comment.nvim/issues/453 for more info
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {}, keys = { "gc", "gb" } },
   -- Add emacs-like bindings to vim in insert/commandline mode
