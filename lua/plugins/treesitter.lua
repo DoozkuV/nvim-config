@@ -1,16 +1,17 @@
 -- Add hyprlang filetype support
-vim.filetype.add {
-  extension = { rasi = 'rasi' },
-  pattern = {
-    ['.*/hypr/.*%.conf'] = 'hyprlang',
-  }
-}
+-- This should no longer be necessary - hyprlang support should exist by default.
+-- vim.filetype.add {
+--   extension = { rasi = 'rasi' },
+--   pattern = {
+--     ['.*/hypr/.*%.conf'] = 'hyprlang',
+--   }
+-- }
 -- Stores all the filetypes to be supported by treesitter
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'typescript',
   'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi', 'svelte',
-  'zig'
+  'zig', 'org'
 }
 
 
