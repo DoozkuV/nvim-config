@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 -- A plugin to replace tmux integration - allows the same integration but with
 -- more terminal options.
+=======
+-- See https://github.com/mrjones2014/smart-splits.nvim for more info
+-- regarding this plugin and how to configure it!
+>>>>>>> 414467d (Comments and leetcode.nvim config)
 return {
   'mrjones2014/smart-splits.nvim',
   config = function()
