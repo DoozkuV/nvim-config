@@ -13,5 +13,6 @@ return {
     vim.keymap.set('n', '<C-l>', smart_splits.move_cursor_right)
     vim.keymap.set('n', '<C-\\>', smart_splits.move_cursor_previous)
   end,
+  -- Lazy loading not recommended with wezterm
   lazy = false
 }
