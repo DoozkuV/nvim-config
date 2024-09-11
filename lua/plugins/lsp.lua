@@ -66,14 +66,16 @@ return {
 
     -- LSP SERVER CONFIGURATION
     local servers = {
-      clangd = {},
+      clangd = {
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" }
+      },
       gopls = {},
       pylsp = {},
       rust_analyzer = {},
-      elixirls = {
-        filetypes = { "elixir", "eelixir", "heex", "surface" },
-        single_file_support = true
-      },
+      -- elixirls = {
+      --   filetypes = { "elixir", "eelixir", "heex", "surface" },
+      --   single_file_support = true
+      -- },
       sqlls = { filetypes = { 'sql', 'mysql' } },
       bashls = { filetypes = { 'sh', 'zsh' }, },
       -- tsserver = {},
@@ -90,7 +92,7 @@ return {
       tailwindcss = {},
       jsonls = {},
       cssls = {},
-      tsserver = {},
+      -- tsserver = {},
     }
 
     -- Setup neovim lua configuration
