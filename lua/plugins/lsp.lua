@@ -11,7 +11,17 @@ return {
 
     -- Additional lua configuration, makes nvim stuff amazing!
     -- TODO: Replace with lazydev.nvim
-    'folke/neodev.nvim',
+    -- 'folke/neodev.nvim',
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = {
+          { path = "luvit-meta/library", words = { "vim%.uv" } }
+        },
+      },
+    },
+    { 'Bilal2453/luvit-meta', lazy = true },
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
@@ -96,7 +106,8 @@ return {
     }
 
     -- Setup neovim lua configuration
-    require('neodev').setup()
+    -- Disabled because of Lazydev
+    -- require('neodev').setup()
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -134,6 +145,17 @@ return {
       format_is_enabled = not format_is_enabled
       print('Setting autoformatting to: ' .. tostring(format_is_enabled))
     end, {})
+    vim.keymap.set("n", "<leader>tf", ":KickstartFormatToggle<cr>", { desc = "[T]oggle [F]ormatting", silent = true })
+
+    -- LSP Diagnostic Warnings Toggle
+    local isLspDiagnosticsVisible = true
+    vim.keymap.set("n", "<leader>tw", function()
+      isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+      vim.diagnostic.config({
+        virtual_text = isLspDiagnosticsVisible,
+        underline = isLspDiagnosticsVisible,
+      })
+    end, { desc = "[T]oggle Warnings", silent = true })
 
     -- Create an augroup that is used for managing our formatting autocmds.
     --      We need one augroup per client to make sure that multiple clients

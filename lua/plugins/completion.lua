@@ -113,6 +113,7 @@ return {
         -- Commented this out as well - see neorg.lua
         -- { name = 'neorg' },
         { name = 'otter' },
+        { name = 'lazydev', group_index = 0 }
       },
     }
 

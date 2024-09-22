@@ -23,7 +23,7 @@ return {
   lazy = leet_arg ~= vim.fn.argv()[1],
   opts = {
     arg = leet_arg,
-    lang = "javascript",
+    lang = "python3",
     hooks = {
       ["question_enter"] = { set_binds },
     },

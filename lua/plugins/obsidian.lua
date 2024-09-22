@@ -1,8 +1,8 @@
 -- Define variables for the workspaces here
 -- TODO: Figure out a way to set these directories by device instead
 -- of globally in this config
-function validate_workspaces(workspaces)
-  valid_workspaces = {}
+local function validate_workspaces(workspaces)
+  local valid_workspaces = {}
   for _, workspace in ipairs(workspaces) do
     if vim.fn.isdirectory(vim.fn.expand(workspace.path)) == 1 then
       table.insert(valid_workspaces, workspace)
@@ -13,8 +13,8 @@ end
 
 local workspaces = validate_workspaces({
   {
-    name = "second-brain",
-    path = "~/Documents/second-brain",
+    name = "main",
+    path = "~/Documents/obsidian",
     overrides = {
       daily_notes = {
         folder = "dailies",
