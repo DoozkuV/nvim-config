@@ -9,9 +9,7 @@ return {
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
-    -- Additional lua configuration, makes nvim stuff amazing!
-    -- TODO: Replace with lazydev.nvim
-    -- 'folke/neodev.nvim',
+    -- Extra LSP features when editing nvim conf
     {
       'folke/lazydev.nvim',
       ft = 'lua',
@@ -102,7 +100,9 @@ return {
       tailwindcss = {},
       jsonls = {},
       cssls = {},
-      -- tsserver = {},
+      ts_ls = {},
+
+      zls = {},
     }
 
     -- Setup neovim lua configuration

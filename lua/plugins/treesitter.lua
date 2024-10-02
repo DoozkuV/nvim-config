@@ -11,9 +11,18 @@ local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
   'markdown', 'markdown_inline', 'racket', 'javascript', 'typescript',
   'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi', 'svelte',
-  'zig', 'org'
+  'zig', 'org', 'latex'
 }
 
+local supported_filetypes = {}
+for i, v in pairs(supported_languages) do
+  if v ~= "latex" then
+    supported_filetypes[i] = v
+  end
+end
+
+table.insert(supported_filetypes, "typescriptreact")
+table.insert(supported_filetypes, "tex")
 
 return {
   -- Highlight, edit, and navigate code
@@ -46,7 +55,7 @@ return {
 
   build = ':TSUpdate',
   -- Filetypes
-  ft = supported_languages,
+  ft = supported_filetypes,
   -- This gets passed into the "Plugin.config()" value
   config = function()
     --@diagnostic disable-next-line: missing-fields

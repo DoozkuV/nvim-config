@@ -1,6 +1,6 @@
+-- TODO: Implement a better templating setup for this config.
+-- See this issue: https://github.com/epwalsh/obsidian.nvim/issues/456
 -- Define variables for the workspaces here
--- TODO: Figure out a way to set these directories by device instead
--- of globally in this config
 local function validate_workspaces(workspaces)
   local valid_workspaces = {}
   for _, workspace in ipairs(workspaces) do
@@ -20,10 +20,6 @@ local workspaces = validate_workspaces({
         folder = "dailies",
         template = "templates/daily.md"
       },
-      -- Return the title with no names or other modifications
-      -- note_id_func = function(title)
-      --   return title
-      -- end,
     },
   },
   {

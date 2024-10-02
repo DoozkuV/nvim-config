@@ -3,10 +3,7 @@ return {
     enabled = true,
 
     lazy = not vim.g.started_by_firenvim,
-    build = function()
-        vim.fn["firenvim#install"](0)
-    end,
-
+    build = ":call firenvim#install(0)",
     -- Only runs when this plugin is loaded
     config = function()
         -- Disable statusline

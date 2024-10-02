@@ -17,6 +17,9 @@ vim.keymap.set('n', '<C-d>', "<C-d>zz")
 vim.keymap.set('i', '<C-BS>', "<C-W>")
 vim.keymap.set('i', '<C-H>', "<C-W>")
 
+-- Enter key remapping to make a new line
+vim.keymap.set('n', '<CR>', 'O<Esc>')
+
 -- Better keybind for switching to last buffer
 vim.keymap.set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
 
@@ -44,7 +47,7 @@ vim.keymap.set("n", "<leader>os", ':LspInfo<cr>', { desc = "[O]pen [S]erver Info
 
 -- [[ Toggles ]]
 vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "[T]oggle [P]encil", silent = true })
-vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode", silent = true })
+-- vim.keymap.set("n", "<leader>tz", ":ZenMode<cr>", { desc = "[T]oggle [Z]en Mode", silent = true })
 vim.keymap.set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "[T]oggle [S]pellcheck", silent = true })
 
 vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "[B]uffer [R]evert", silent = true })
