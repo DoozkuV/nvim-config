@@ -10,32 +10,32 @@ return {
   --   {
   --     '<leader>nw',
   --     ':Telescope neorg switch_workspace<cr>',
-  --     desc = '[N]eorg [W]orkspaces',
+  --     desc = 'Neorg Workspaces',
   --   },
   --   {
   --     '<leader>nj',
   --     ':Neorg journal today<cr>',
-  --     desc = '[N]eorg [J]ournal'
+  --     desc = 'Neorg Journal'
   --   },
   --   {
   --     '<leader>ns',
   --     ':Telescope neorg find_norg_files<cr>',
-  --     desc = '[N]eorg [S]earch',
+  --     desc = 'Neorg Search',
   --   },
   --   {
   --     '<leader>ni',
   --     ':Neorg index<cr>',
-  --     desc = '[N]eorg [I]ndex',
+  --     desc = 'Neorg Index',
   --   },
   --   {
   --     '<leader>nr',
   --     ':Neorg return<cr>',
-  --     desc = '[N]eorg [R]eturn',
+  --     desc = 'Neorg Return',
   --   },
   --   {
   --     '<leader>nc',
   --     ':Neorg toggle-concealer<cr>',
-  --     desc = '[N]eorg Toggle [C]oncealer',
+  --     desc = 'Neorg Toggle Concealer',
   --   },
   -- },
   -- config = function()

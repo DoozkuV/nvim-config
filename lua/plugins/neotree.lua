@@ -17,13 +17,13 @@ return {
     {
       '<leader>op',
       ':Neotree toggle<cr>',
-      desc = "[O]pen File Tree [P]",
+      desc = "Open File Tree P",
       silent = true
     },
     {
       '<leader>ob',
       ':Neotree toggle show buffers right<cr>',
-      desc = "[O]pen [B]uffer list",
+      desc = "Open Buffer list",
       silent = true
     }
 

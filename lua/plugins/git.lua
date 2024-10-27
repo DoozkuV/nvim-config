@@ -12,13 +12,27 @@ return {
       {
         "<leader>gg",
         ":Neogit<cr>",
-        desc = '[G]it Open',
+        desc = 'Git Open',
+      },
+      {
+        "<leader>go",
+        function()
+          require('neogit').open({ kind = "split" })
+        end,
+        desc = 'Git Open Split',
       },
       {
         "<leader>gc",
         ":Neogit commit<cr>",
-        desc = '[G]it [C]ommit Open',
+        desc = 'Git Commit Open',
       }
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
     },
   },
   {
@@ -35,9 +49,9 @@ return {
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview [H]unk' })
+          { buffer = bufnr, desc = 'Go to Previous Hunk' })
+        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
+        vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview Hunk' })
       end,
     },
   },

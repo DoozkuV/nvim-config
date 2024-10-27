@@ -1,11 +1,17 @@
 -- See also obsidian.lua for more markdown stuff
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    opts = {
+      initial_state = false,
+    },
+  }
+
   -- { -- Image support for neorg and markdown
   --   "3rd/image.nvim",
   --   ft = { "markdown", "norg" },

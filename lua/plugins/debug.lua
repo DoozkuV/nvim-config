@@ -24,14 +24,14 @@ return {
     {
       '<leader>bt',
       function() require('dap').toggle_breakpoint() end,
-      desc = '[B]reakpoint [T]oggle'
+      desc = 'Breakpoint Toggle'
     },
     {
       '<leader>bc',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
-      desc = '[B]reakpoint [C]ondition'
+      desc = 'Breakpoint Condition'
     },
     {
       '<F5>',

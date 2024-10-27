@@ -20,6 +20,14 @@ local workspaces = validate_workspaces({
         folder = "dailies",
         template = "templates/daily.md"
       },
+      templates = {
+        folder = "templates",
+        substitutions = {
+          ['<% tp.file.creation_date() %>'] = function()
+            return os.time()
+          end
+        },
+      }
     },
   },
   {
@@ -98,19 +106,19 @@ return {
         action = function()
           return require("obsidian").util.toggle_checkbox()
         end,
-        opts = { buffer = true, desc = "Toggle [C]heckbox" },
+        opts = { buffer = true, desc = "Toggle Checkbox" },
       },
       ["<LocalLeader>o"] = {
         action = ":ObsidianOpen<cr>",
-        opts = { buffer = true, desc = "[O]pen Obsidian" },
+        opts = { buffer = true, desc = "Open Obsidian" },
       },
       ["<LocalLeader>V"] = {
         action = ":ObsidianPasteImg<cr>",
-        opts = { buffer = true, desc = "[V] Paste Image" },
+        opts = { buffer = true, desc = "V Paste Image" },
       },
       ["<LocalLeader>r"] = {
         action = ":ObsidianRename ",
-        opts = { buffer = true, desc = "[R]ename Note" },
+        opts = { buffer = true, desc = "Rename Note" },
       },
     }
   },
@@ -125,32 +133,32 @@ return {
     {
       '<leader>rc',
       ":ObsidianNew ",
-      desc = 'Obsidian: [R] New [C]reate',
+      desc = 'Obsidian: R New Create',
     },
     {
       '<leader>rf',
       ":ObsidianQuickSwitch<cr>",
-      desc = 'Obsidian: [R] Note [F]ind'
+      desc = 'Obsidian: R Note Find'
     },
     {
       '<leader>rs',
       ":ObsidianSearch<cr>",
-      desc = 'Obsidian: [R] Note [S]earch'
+      desc = 'Obsidian: R Note Search'
     },
     {
       '<leader>rw',
       ":ObsidianWorkspace ",
-      desc = 'Obsidian: [R] Select [W]orkspace'
+      desc = 'Obsidian: R Select Workspace'
     },
     {
       '<leader>rd',
       ":ObsidianToday<cr>",
-      desc = 'Obsidian: [R] Open [D]aily Note',
+      desc = 'Obsidian: R Open Daily Note',
     },
     {
       '<leader>rt',
       ":ObsidianTemplate<cr>",
-      desc = 'Obsidian: [R] Create From [T]emplate',
+      desc = 'Obsidian: R Create From Template',
     },
     { -- Function to delete all open Obsidian Buffers
       '<leader>rr',
@@ -168,7 +176,7 @@ return {
           end
         end
       end,
-      desc = "Obsidian: [R] [R]eturn"
+      desc = "Obsidian: R Return"
     }
   },
 }

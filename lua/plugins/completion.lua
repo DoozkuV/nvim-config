@@ -1,7 +1,3 @@
--- Global variable to enable/disable completion
-vim.g.cmp_toggle_flag = true
--- Plugins relating to completion in nvim
-local otter_ft = { 'markdown', 'html', 'nix' }
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
@@ -20,30 +16,27 @@ return {
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-buffer',
 
-    -- Enables LSP Inside of Codeblocks
-    {
-      'jmbuhr/otter.nvim',
-      enabled = false,
-      ft = otter_ft,
-      config = function()
-        local otter_languages = { 'python', 'lua', 'bash', 'sh', 'javascript', 'css' }
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = otter_ft,
-          callback = function()
-            require("otter").activate(otter_languages, true, true)
-          end,
-        })
-      end
-    },
-
+    -- Cool little icons
+    'onsails/lspkind.nvim',
   },
   event = { 'InsertEnter', 'CmdlineEnter' },
   config = function()
     -- See `:help cmp`
-    local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
+    local lspkind = require('lspkind')
+
+
+    -- Create an autocommand to enable completion in all buffers except telescope
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
+      callback = function()
+        if vim.bo.filetype ~= "TelescopePrompt" and vim.b.cmp_enabled == nil then
+          vim.b.cmp_enabled = true
+        end
+      end
+    })
 
     -- Tab down and up functions for use later in the config
     local tab_down = cmp.mapping(function(fallback)
@@ -82,7 +75,36 @@ return {
       end
     end
 
+    local base_keybind_table = {
+      ['<C-j>'] = cmp.mapping.select_next_item(),
+      ['<C-k>'] = cmp.mapping.select_prev_item(),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete {},
+      ['<CR>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
+      ['<Tab>'] = tab_down,
+      ['<S-Tab>'] = tab_up,
+    }
+
+    local command_keybind_table = {
+      ['<C-j>'] = { c = tab_down_cmdline },
+      ['<Tab>'] = { c = tab_down_cmdline },
+      ['<C-k>'] = { c = tab_up_cmdline },
+      ['<S-Tab>'] = { c = tab_up_cmdline },
+    }
+
     cmp.setup {
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = 'symbol_text',
+          maxwidth = 50,
+          ellipsis_char = '...',
+          show_labelDetails = true,
+        })
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -90,50 +112,22 @@ return {
       },
       -- Enable or disable completion
       enabled = function()
-        return vim.g.cmp_toggle_flag
+        return vim.b.cmp_enabled
       end,
-      mapping = cmp.mapping.preset.insert {
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
-        ['<C-j>'] = tab_down,
-        ['<Tab>'] = tab_down,
-        ['<C-k>'] = tab_up,
-        ['<S-Tab>'] = tab_up,
-      },
+      -- Add the tab bindings
+      mapping = cmp.mapping.preset.insert(base_keybind_table),
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        -- Commented this out as well - see neorg.lua
-        -- { name = 'neorg' },
-        { name = 'otter' },
-        { name = 'lazydev', group_index = 0 }
+        { name = 'lazydev', group_index = 0 },
+        { name = 'path' },
+        { name = 'buffer' },
       },
     }
 
     -- '/' cmdline setup
     cmp.setup.cmdline('/', {
-      mapping = cmp.mapping.preset.cmdline({
-        -- ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- ['<C-p>'] = cmp.mapping.select_prev_item(),
-        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- ['<C-Space>'] = cmp.mapping.complete {},
-        -- ['<CR>'] = cmp.mapping.confirm {
-        --   behavior = cmp.ConfirmBehavior.Replace,
-        --   select = true,
-        -- },
-        ['<C-j>'] = { c = tab_down_cmdline },
-        ['<Tab>'] = { c = tab_down_cmdline },
-        ['<C-k>'] = { c = tab_up_cmdline },
-        ['<S-Tab>'] = { c = tab_up_cmdline },
-      }),
+      mapping = cmp.mapping.preset.cmdline(command_keybind_table),
       sources = {
         { name = 'buffer' }
       }
@@ -141,21 +135,7 @@ return {
 
     -- `:` cmdline setup
     cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline({
-        -- ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- ['<C-p>'] = cmp.mapping.select_prev_item(),
-        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- ['<C-Space>'] = cmp.mapping.complete {},
-        -- ['<CR>'] = cmp.mapping.confirm {
-        --   behavior = cmp.ConfirmBehavior.Replace,
-        --   select = true,
-        -- },
-        ['<C-j>'] = { c = tab_down_cmdline },
-        ['<Tab>'] = { c = tab_down_cmdline },
-        ['<C-k>'] = { c = tab_up_cmdline },
-        ['<S-Tab>'] = { c = tab_up_cmdline },
-      }),
+      mapping = cmp.mapping.preset.cmdline(command_keybind_table),
       sources = cmp.config.sources({
         { name = 'path' }
       }, {
@@ -172,11 +152,11 @@ return {
     { -- Toggle completion binding
       '<leader>tc',
       function()
-        vim.g.cmp_toggle_flag = not vim.g.cmp_toggle_flag
+        vim.b.cmp_enabled = not vim.b.cmp_enabled
         print("Completion "
-          .. (vim.g.cmp_toggle_flag and "enabled" or "disabled"))
+          .. (vim.b.cmp_enabled and "enabled" or "disabled"))
       end,
-      desc = '[T]oggle [C]ompletion',
+      desc = 'Toggle Completion',
     }
   },
 }

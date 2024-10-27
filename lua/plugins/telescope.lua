@@ -26,12 +26,12 @@ return {
       '<leader>sr',
       function() require('telescope.builtin').oldfiles() end,
       desc =
-      '[S]earch [R]ecently opened files'
+      'Search Recently opened files'
     },
     {
       '<leader>,',
       function() require('telescope.builtin').buffers() end,
-      desc = '[,] Find existing buffers'
+      desc = 'Find existing buffers'
     },
     {
       '<leader>/',
@@ -42,45 +42,41 @@ return {
           previewer = false,
         })
       end,
-      desc = '[/] Fuzzily search in current buffer'
+      desc = 'Fuzzily search in current buffer'
     },
-    { '<leader>gf', function() require('telescope.builtin').git_files() end,  desc = 'Search [G]it [F]iles' },
-    { '<leader> ',  function() require('telescope.builtin').find_files() end, desc = '[ ] Find Files' },
-    { '<leader>sh', function() require('telescope.builtin').help_tags() end,  desc = '[S]earch [H]elp' },
+    { '<leader>gf', function() require('telescope.builtin').git_files() end,  desc = 'Search Git Files' },
+    { '<leader> ',  function() require('telescope.builtin').find_files() end, desc = 'Find Files' },
+    { '<leader>sh', function() require('telescope.builtin').help_tags() end,  desc = 'Search Help' },
     {
       '<leader>sw',
       function()
         require('telescope.builtin').grep_string()
       end,
-      desc = '[S]earch current [W]ord'
+      desc = 'Search current Word'
     },
-    { '<leader>sg', function() require('telescope.builtin').live_grep() end,      desc = '[S]earch by [G]rep' },
+    { '<leader>sg', function() require('telescope.builtin').live_grep() end,      desc = 'Search by Grep' },
     {
       '<leader>sd',
       function() require('telescope.builtin').diagnostics() end,
       desc =
-      '[S]earch [D]iagnostics'
+      'Search Diagnostics'
     },
-    { '<leader>sf', function() require('telescope.builtin').find_files() end,     desc = '[S]earch [F]iles' },
-    { '<leader>sb', function() require('telescope.builtin').buffers() end,        desc = '[S]earch [B]uffers' },
+    { '<leader>sf', function() require('telescope.builtin').find_files() end,     desc = 'Search Files' },
+    { '<leader>sb', function() require('telescope.builtin').buffers() end,        desc = 'Search Buffers' },
 
-    { '<leader>sm', function() require('telescope.builtin').man_pages() end,      desc = '[S]earch [M]an' },
+    { '<leader>sm', function() require('telescope.builtin').man_pages() end,      desc = 'Search Man' },
 
     -- LSP Keybinds
-    { 'gr',         function() require('telescope.builtin').lsp_references() end, desc = '[G]oto [R]eferences' },
+    { 'gr',         function() require('telescope.builtin').lsp_references() end, desc = 'Goto References' },
     {
       '<leader>ds',
       function() require('telescope.builtin').lsp_document_symbols() end,
-
-      desc =
-      '[D]ocument [S]ymbols'
+      desc = 'Document Symbols',
     },
     {
       '<leader>ws',
       function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
-
-      desc =
-      '[W]orkspace [S]ymbols'
+      desc = 'Workspace Symbols',
     },
   },
   config = function()

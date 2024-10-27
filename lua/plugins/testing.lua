@@ -15,14 +15,14 @@ validate_plugin_dir({
   enabled = false
 })
 
-validate_plugin_dir({
-  dir = "/home/doozku/Projects/Neovim/spell-check",
-  name = "spell-check",
-  keys = { {
-    '<C-;>',
-    function() require("spell-check").correct_word() end,
-    mode = { 'n', 'i' },
-  } }
-})
+-- validate_plugin_dir({
+--   dir = "/home/doozku/Projects/spell-check.nvim/",
+--   name = "spell-check",
+--   keys = { {
+--     '<C-;>',
+--     function() require("spell-check").correct_word() end,
+--     mode = { 'n', 'i' },
+--   } }
+-- })
 -- Stores all neovim plugins that I am currently working on my local machine
 return valid_projects

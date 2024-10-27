@@ -35,7 +35,7 @@ return {
       "<leader>oc",
       ':Gen<CR>',
       silent = true,
-      desc = "[O]pen [C]hat",
+      desc = "Open Chat",
     }
   }
 
