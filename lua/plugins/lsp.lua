@@ -104,6 +104,8 @@ return {
 
       zls = {},
       ruby_lsp = {},
+
+      elixirls = {},
     }
 
     -- Setup neovim lua configuration

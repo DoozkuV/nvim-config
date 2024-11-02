@@ -4,6 +4,7 @@ return {
     require("colorizer").setup {
       css = { names = true, rgb_fn = true, hsl_fn = true, css = true, css_fn = true, },
       'javascript',
+      'hyprlang',
       html = {
         mode = 'foreground',
       }

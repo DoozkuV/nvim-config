@@ -16,17 +16,14 @@ local workspaces = validate_workspaces({
     name = "main",
     path = "~/Documents/obsidian",
     overrides = {
+      notes_subdir = "in",
+      new_notes_location = "notes_subdir",
       daily_notes = {
         folder = "dailies",
         template = "templates/daily.md"
       },
       templates = {
         folder = "templates",
-        substitutions = {
-          ['<% tp.file.creation_date() %>'] = function()
-            return os.time()
-          end
-        },
       }
     },
   },
@@ -76,13 +73,10 @@ return {
     new_notes_location = "notes_subdir",
 
     -- Code for naming new notes
-    -- note_id_func = function(title)
-    --   return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower() -- Lowercase version of title
-    -- end,
-    -- New function for returning notes - we just want the title.
     note_id_func = function(title)
       return title
     end,
+
     -- Code for opening urls
     follow_url_func = function(url)
       -- Open the URL in the default web browser.
@@ -120,7 +114,28 @@ return {
         action = ":ObsidianRename ",
         opts = { buffer = true, desc = "Rename Note" },
       },
-    }
+      ["<cr>"] = {
+        action = function()
+          return require("obsidian").util.smart_action()
+        end,
+        opts = { buffer = true, expr = true },
+      }
+    },
+
+    note_frontmatter_func = function(note)
+      -- Automatically create ID and tags
+      local out = { id = note.id, tags = note.tags }
+
+      if note.aliases ~= nil then out.aliases = note.aliases end
+
+      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+        for k, v in pairs(note.metadata) do
+          out[k] = v
+        end
+      end
+
+      return out
+    end
   },
   cmd = {
     "ObsidianQuickSwitch",

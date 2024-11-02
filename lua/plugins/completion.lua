@@ -1,9 +1,10 @@
+vim.g.cmp_enabled = true
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
-    'L3MON4D3/LuaSnip',
+    { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
     'saadparwaiz1/cmp_luasnip',
 
     -- Adds LSP completion capabilities
@@ -27,16 +28,6 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
     local lspkind = require('lspkind')
-
-
-    -- Create an autocommand to enable completion in all buffers except telescope
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
-      callback = function()
-        if vim.bo.filetype ~= "TelescopePrompt" and vim.b.cmp_enabled == nil then
-          vim.b.cmp_enabled = true
-        end
-      end
-    })
 
     -- Tab down and up functions for use later in the config
     local tab_down = cmp.mapping(function(fallback)
@@ -112,7 +103,7 @@ return {
       },
       -- Enable or disable completion
       enabled = function()
-        return vim.b.cmp_enabled
+        return vim.bo.filetype ~= "TelescopePrompt" and vim.g.cmp_enabled
       end,
       -- Add the tab bindings
       mapping = cmp.mapping.preset.insert(base_keybind_table),
@@ -152,9 +143,9 @@ return {
     { -- Toggle completion binding
       '<leader>tc',
       function()
-        vim.b.cmp_enabled = not vim.b.cmp_enabled
+        vim.g.cmp_enabled = not vim.g.cmp_enabled
         print("Completion "
-          .. (vim.b.cmp_enabled and "enabled" or "disabled"))
+          .. (vim.g.cmp_enabled == true and "enabled" or "disabled"))
       end,
       desc = 'Toggle Completion',
     }
