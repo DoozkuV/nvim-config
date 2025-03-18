@@ -1,3 +1,4 @@
+-- Displays the colors of certain RGB statements in css buffers
 return {
   'norcalli/nvim-colorizer.lua',
   config = function()

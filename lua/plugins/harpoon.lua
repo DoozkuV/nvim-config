@@ -44,7 +44,7 @@ return {
       desc = 'Harpoon [1]'
     },
     {
-      '<C-r>',
+      '<C-f>',
       function() require("harpoon"):list():select(2) end,
       desc = 'Harpoon [2]'
     },
