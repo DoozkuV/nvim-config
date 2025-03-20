@@ -20,18 +20,14 @@ return {
       },
     },
     { 'Bilal2453/luvit-meta', lazy = true },
+    -- Completion
+    { 'saghen/blink.cmp', }
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
@@ -108,13 +104,9 @@ return {
       elixirls = {},
     }
 
-    -- Setup neovim lua configuration
-    -- Disabled because of Lazydev
-    -- require('neodev').setup()
-
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
     -- Ensure the servers above are installed
     local mason_lspconfig = require 'mason-lspconfig'
@@ -132,12 +124,6 @@ return {
           filetypes = (servers[server_name] or {}).filetypes,
         }
       end
-    }
-
-    -- Setup racket lsp server (doesn't work with mason)
-    require('lspconfig').racket_langserver.setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
     }
 
     -- AUTOFORMATTING
