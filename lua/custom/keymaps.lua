@@ -9,7 +9,11 @@ set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Remap for centering cursor upon hitting Ctrl-U and D
 set('n', '<C-u>', "<C-u>zz")
-set('n', '<C-d>', "<C-d>zz")
+set('n', "<C-d>", "<C-d>zz")
+
+-- Quickfix list commands
+set('n', "<C-S-j>", '<cmd>cnext<CR>')
+set('n', "<C-S-k>", '<cmd>cprev<CR>')
 
 -- Binding in insert mode for deleting the last block of text
 -- Backspace tends to be binded to ctrl-h keymap in many terminals
@@ -29,19 +33,13 @@ set('n', "<leader>X", "<cmd>source %<CR>", { desc = "Exec current file" })
 -- Open Oil file manager
 set("n", "<leader>.", require("oil").open, { desc = "Open parent directory" })
 
--- Diagnostic keymaps
-set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
 -- Open Functions
 set("n", "<leader>ol", ':Lazy<cr>', { desc = "Open Lazy", silent = true })
 set("n", "<leader>om", ':Mason<cr>', { desc = "Open Mason", silent = true })
--- The following runs a command that opens a new terminal window
-set("n", "<leader>ot", ':!setsid -f $TERMINAL >/dev/null 2>&1<cr><cr>',
-  { desc = "Open Terminal", silent = true })
 -- Opens the "Inspect" Treesitter view
 set("n", "<leader>oi", ':InspectTree<cr>', { desc = "Open Inspect Tree", silent = true })
 -- Opens the lspinfo view
@@ -52,8 +50,9 @@ set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "Toggle Pencil", silent = t
 -- set("n", "<leader>tz", ":ZenMode<cr>", { desc = "Toggle Zen Mode", silent = true })
 -- set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "Toggle Spellcheck", silent = true })
 set("n", "<leader>ts", function()
-  vim.opt_local.spell = not vim.opt_local.spell;
-  print("Spelling " .. (vim.opt_local.spell == true and "enabled" or "disabled"))
+  local new = not vim.opt_local.spell:get();
+  vim.opt_local.spell = new
+  print("Spelling " .. (new and "enabled" or "disabled"))
 end, { desc = "Toggle Spellcheck", silent = true })
 
 set("n", "<leader>br", ":e<cr>", { desc = "Buffer Revert", silent = true })

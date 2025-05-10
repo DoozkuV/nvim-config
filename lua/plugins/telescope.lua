@@ -54,20 +54,20 @@ return {
       end,
       desc = 'Search current Word'
     },
-    { '<leader>sg', function() require('telescope.builtin').live_grep() end,      desc = 'Search by Grep' },
+    { '<leader>sg', function() require('telescope.builtin').live_grep() end,  desc = 'Search by Grep' },
     {
       '<leader>sd',
       function() require('telescope.builtin').diagnostics() end,
       desc =
       'Search Diagnostics'
     },
-    { '<leader>sf', function() require('telescope.builtin').find_files() end,     desc = 'Search Files' },
-    { '<leader>sb', function() require('telescope.builtin').buffers() end,        desc = 'Search Buffers' },
+    { '<leader>sf', function() require('telescope.builtin').find_files() end, desc = 'Search Files' },
+    { '<leader>sb', function() require('telescope.builtin').buffers() end,    desc = 'Search Buffers' },
 
-    { '<leader>sm', function() require('telescope.builtin').man_pages() end,      desc = 'Search Man' },
+    { '<leader>sm', function() require('telescope.builtin').man_pages() end,  desc = 'Search Man' },
 
     -- LSP Keybinds
-    { 'gr',         function() require('telescope.builtin').lsp_references() end, desc = 'Goto References' },
+    -- { 'gr',         function() require('telescope.builtin').lsp_references() end, desc = 'Goto References' },
     {
       '<leader>ds',
       function() require('telescope.builtin').lsp_document_symbols() end,

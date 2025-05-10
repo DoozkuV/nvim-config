@@ -2,6 +2,7 @@
 local leet_arg = "leetcode.nvim"
 
 -- Keybinds to be set on opening a leetcode question buffer
+---@private
 local set_binds = function(question)
   local buf = question.bufnr
 

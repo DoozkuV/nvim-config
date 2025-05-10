@@ -21,7 +21,7 @@ return {
     },
     { 'Bilal2453/luvit-meta', lazy = true },
     -- Completion
-    { 'saghen/blink.cmp', }
+    'saghen/blink.cmp',
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
@@ -36,13 +36,13 @@ return {
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
 
-      nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-      nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+      -- nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+      -- nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
-      nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
+      nmap('grd', vim.lsp.buf.definition, 'Goto Definition')
       -- nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
-      nmap('gI', vim.lsp.buf.implementation, 'Goto Implementation')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type Definition')
+      -- nmap('gI', vim.lsp.buf.implementation, 'Goto Implementation')
+      nmap('grt', vim.lsp.buf.type_definition, 'Type Definition')
       -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
       -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
@@ -76,32 +76,33 @@ return {
       gopls = {},
       pylsp = {},
       rust_analyzer = {},
-      -- elixirls = {
-      --   filetypes = { "elixir", "eelixir", "heex", "surface" },
-      --   single_file_support = true
-      -- },
+      elixirls = { single_file_support = true },
       sqlls = { filetypes = { 'sql', 'mysql' } },
       bashls = { filetypes = { 'sh', 'zsh' }, },
-      -- tsserver = {},
-      html = { filetypes = { 'html', 'twig', 'hbs' } },
 
+      phpactor = { filetypes = { "php" } },
+      zls = {},
+      ruby_lsp = {},
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
           telemetry = { enable = false },
         },
       },
-      svelte = {},
-      emmet_ls = {},
-      tailwindcss = {},
       jsonls = {},
+
+      -- Web dev
+      html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
       ts_ls = {},
-
-      zls = {},
-      ruby_lsp = {},
-
-      elixirls = {},
+      tailwindcss = {},
+      emmet_ls = { filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "htmlangular", "templ" } },
+      
+      -- Go templating language
+      templ = {},
+      -- Web frameworks
+      svelte = {},
+      astro = {},
     }
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -112,20 +113,21 @@ return {
     local mason_lspconfig = require 'mason-lspconfig'
 
     mason_lspconfig.setup {
+      automatic_enable = true,
       ensure_installed = vim.tbl_keys(servers),
     }
-
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        }
-      end
-    }
-
+    -- --
+    -- mason_lspconfig.setup_handlers {
+    --   function(server_name)
+    --     require('lspconfig')[server_name].setup {
+    --       capabilities = capabilities,
+    --       on_attach = on_attach,
+    --       settings = servers[server_name],
+    --       filetypes = (servers[server_name] or {}).filetypes,
+    --     }
+    --   end
+    -- }
+    --
     -- AUTOFORMATTING
     -- Switch for controlling whether you want autoformatting.
     --  Use :KickstartFormatToggle to toggle autoformatting on or off

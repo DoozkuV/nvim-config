@@ -1,3 +1,11 @@
+-- Utility function for returning pairs for the surroundings
+local function surround_pair(lhs, rhs)
+  return {
+    [lhs] = { add = { lhs, rhs } },
+    [rhs] = { add = { lhs .. " ", " " .. rhs } },
+  }
+end
+
 -- Plugins dedicated to adding new motions to nvim
 return {
   {
@@ -22,9 +30,14 @@ return {
     keys = {
       "ys", "ds", "cs", 'S'
     },
-    config = function()
-      require("nvim-surround").setup() -- Insert setup here
-    end
+    opts = {
+      surrounds = vim.tbl_deep_extend("force",
+        surround_pair("(", ")"),
+        surround_pair("[", "]"),
+        surround_pair("{", "}"),
+        surround_pair("<", ">")
+      ),
+    },
   },
 
   -- NOTE: As of Neovim v10, this feature is now native in Neovim
@@ -34,5 +47,5 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {}, keys = { "gc", "gb" } },
   -- Add emacs-like bindings to vim in insert/commandline mode
-  "tpope/vim-rsi",
+  -- "tpope/vim-rsi",
 }
