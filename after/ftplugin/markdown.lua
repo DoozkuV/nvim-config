@@ -27,5 +27,7 @@ vim.keymap.set('i', '<C-b>', function()
     insert_delimiters('**')
 end, keymap_opts)
 
--- Enable spellchecking automatically in markdown buffers
-vim.opt_local.spell = true
+-- Enable spellchecking automatically in editable markdown buffers
+if vim.bo.modifiable then
+    vim.opt_local.spell = true
+end
