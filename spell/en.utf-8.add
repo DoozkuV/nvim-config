@@ -95,3 +95,8 @@ Astro
 TOML
 YAML
 JSON
+REPL
+AST
+POSIX
+ripgrep
+keymap
