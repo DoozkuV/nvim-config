@@ -84,6 +84,12 @@ return {
         })
       end, { desc = "Toggle Warnings", silent = true })
     end,
+    keys = {
+      {
+        'grd',
+        vim.lsp.buf.definition,
+      },
+    }
   },
   -- FORMATTING PLUGIN
   {
