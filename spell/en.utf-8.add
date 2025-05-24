@@ -100,3 +100,4 @@ AST
 POSIX
 ripgrep
 keymap
+pseudoinverse

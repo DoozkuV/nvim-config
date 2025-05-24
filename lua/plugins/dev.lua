@@ -48,4 +48,11 @@ validate_plugin_dir({
 --     require('present')
 --   end
 -- })
+
+validate_plugin_dir({
+  dir = nvim_dir .. "/gptua/",
+  name = "gptua",
+  lazy = false
+})
+
 return valid_projects

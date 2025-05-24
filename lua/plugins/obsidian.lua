@@ -14,7 +14,7 @@ end
 local workspaces = validate_workspaces({
   {
     name = "main",
-    path = "~/Documents/obsidian",
+    path = "~/Dropbox/obsidian",
     overrides = {
       notes_subdir = "in",
       new_notes_location = "notes_subdir",
@@ -27,15 +27,15 @@ local workspaces = validate_workspaces({
       }
     },
   },
-  {
-    name = "arden",
-    path = "~/Documents/DND/arden-campaign",
-    overrides = {
-      daily_notes = {
-        folder = "sessions",
-      }
-    }
-  },
+  -- {
+  --   name = "arden",
+  --   path = "~/Documents/DND/arden-campaign",
+  --   overrides = {
+  --     daily_notes = {
+  --       folder = "sessions",
+  --     }
+  --   }
+  -- },
   {
     name = "start-up",
     path = "~/Documents/start-up",

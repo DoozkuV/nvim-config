@@ -20,7 +20,7 @@ end
 
 -- Set them keybinds
 local keymap_opts = { noremap = true, buffer = true }
-vim.keymap.set('i', '<C-i>', function()
+vim.keymap.set('i', '<C-S-i>', function()
     insert_delimiters('*')
 end, keymap_opts)
 vim.keymap.set('i', '<C-b>', function()
