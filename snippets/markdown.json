@@ -1,0 +1,7 @@
+{
+  "frontmatter": {
+    "prefix": "---",
+    "body": "---\n${1}\n---",
+    "description": "Snippet for yaml frontmatter"
+  }
+}
