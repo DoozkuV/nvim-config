@@ -2,6 +2,7 @@ return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
+      -- Manage and install LSPs automatically
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
@@ -31,7 +32,7 @@ return {
           filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" }
         },
         gopls = {},
-        pylsp = {},
+        basedpyright = {},
         rust_analyzer = {},
         elixirls = { single_file_support = true },
         sqlls = { filetypes = { 'sql', 'mysql' } },

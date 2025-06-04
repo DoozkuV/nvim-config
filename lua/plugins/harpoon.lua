@@ -5,23 +5,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" }, -- "nvim-telescope/telescope.nvim" },
   config = function()
     local harpoon = require("harpoon")
-    harpoon:setup({
-      -- Set up running shell commands in another buffer
-      popup = {
-        create_list_item = function(possible_value)
-          return {
-            value = vim.fn.input({ prompt = "Enter cmd: ", completion = 'shellcmd' }),
-          }
-        end,
-        select = function(list_item, list, option)
-          if vim.fn.getenv('TMUX') then
-            vim.fn.system("tmux popup -d '#{pane_current_path}' "
-              .. "-w 75% -h 80% "
-              .. list_item.value)
-          end
-        end
-      }
-    })
+    harpoon:setup({})
   end,
 
   keys = {
@@ -57,39 +41,6 @@ return {
       '<C-p>',
       function() require("harpoon"):list():select(4) end,
       desc = 'Harpoon [4]'
-    },
-    {
-      '<leader>cm',
-      function() require("harpoon"):list('popup'):add() end,
-      desc = 'Command Mark'
-    },
-    {
-      '<leader>cq',
-      function()
-        local harpoon = require("harpoon")
-        harpoon.ui:toggle_quick_menu(harpoon:list('popup'))
-      end,
-      desc = 'Command Quick Menu'
-    },
-    {
-      '<leader>ch',
-      function() require("harpoon"):list('popup'):select(1) end,
-      desc = 'Harpoon Command [1]'
-    },
-    {
-      '<leader>cj',
-      function() require("harpoon"):list('popup'):select(2) end,
-      desc = 'Harpoon Command [2]'
-    },
-    {
-      '<leader>ck',
-      function() require("harpoon"):list('popup'):select(3) end,
-      desc = 'Harpoon Command [3]'
-    },
-    {
-      '<leader>cl',
-      function() require("harpoon"):list('popup'):select(4) end,
-      desc = 'Harpoon Command [4]'
     },
     {
       '<C-M-p>',

@@ -32,15 +32,15 @@ validate_plugin_dir({
   }
 })
 
-validate_plugin_dir({
-  dir = nvim_dir .. "/quick-spell.nvim/",
-  name = "quick-spell",
-  keys = { {
-    '<C-;>',
-    function() require("quick-spell").correct_word() end,
-    mode = { 'n', 'i' },
-  } }
-})
+-- validate_plugin_dir({
+--   dir = nvim_dir .. "/quick-spell.nvim/",
+--   name = "quick-spell",
+--   keys = { {
+--     '<C-;>',
+--     function() require("quick-spell").correct_word() end,
+--     mode = { 'n', 'i' },
+--   } }
+-- })
 --
 -- validate_plugin_dir({
 --   dir = nvim_dir .. "/present.nvim",
