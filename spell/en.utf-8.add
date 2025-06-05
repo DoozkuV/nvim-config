@@ -26,7 +26,6 @@ Emacs
 Fafsa
 func
 tbh
-<<<<<<< HEAD
 but
 Multiline
 X10
@@ -40,10 +39,7 @@ builtins
 Pikachu
 braceless
 unminifier
-=======
-leet
 param
->>>>>>> 414467d (Comments and leetcode.nvim config)
 leet
 scannable
 plaintext
@@ -102,6 +98,5 @@ ripgrep
 keymap
 pseudoinverse
 Extmarks
-Backend
-backend
 FastAPI
+Hyprland
