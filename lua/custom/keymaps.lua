@@ -18,8 +18,8 @@ set('n', "<C-S-k>", '<cmd>cprev<CR>')
 -- Binding in insert mode for deleting the last block of text
 -- Backspace tends to be binded to ctrl-h keymap in many terminals
 -- So we just bind it to both of these keymaps.
-set('i', '<C-BS>', "<C-W>")
-set('i', '<C-H>', "<C-W>")
+vim.keymap.set('i', '<C-BS>', "<C-W>")
+vim.keymap.set('i', '<C-H>', "<C-W>")
 
 -- Better keybind for switching to last buffer
 set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
