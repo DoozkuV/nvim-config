@@ -11,10 +11,6 @@ set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 set('n', '<C-u>', "<C-u>zz")
 set('n', "<C-d>", "<C-d>zz")
 
--- Quickfix list commands
-set('n', "<C-S-j>", '<cmd>cnext<CR>')
-set('n', "<C-S-k>", '<cmd>cprev<CR>')
-
 -- Binding in insert mode for deleting the last block of text
 -- Backspace tends to be binded to ctrl-h keymap in many terminals
 -- So we just bind it to both of these keymaps.
@@ -28,6 +24,14 @@ set('n', '<leader>`', '<C-^>', { desc = "Open Previous Buffer" })
 -- Binding for quickly evaluating a line
 set('n', "<leader>x", "<cmd>.lua<CR>", { desc = "Exec current line" })
 set('n', "<leader>X", "<cmd>source %<CR>", { desc = "Exec current file" })
+
+-- [[ Quickfix List ]]
+-- Quick navigation
+set('n', "<C-S-j>", '<cmd>cnext<CR>')
+set('n', "<C-S-k>", '<cmd>cprev<CR>')
+-- Opening and Closing
+set('n', "<leader>cc", '<cmd>cclose<CR>')
+set('n', "<leader>co", '<cmd>copen<CR>')
 
 -- [[ Oil ]]
 -- Open Oil file manager
@@ -44,6 +48,7 @@ set("n", "<leader>om", ':Mason<cr>', { desc = "Open Mason", silent = true })
 set("n", "<leader>oi", ':InspectTree<cr>', { desc = "Open Inspect Tree", silent = true })
 -- Opens the lspinfo view
 set("n", "<leader>os", ':LspInfo<cr>', { desc = "Open Server Info", silent = true })
+
 
 -- [[ Toggles ]]
 set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "Toggle Pencil", silent = true })

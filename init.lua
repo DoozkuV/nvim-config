@@ -1,5 +1,4 @@
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- Set these before plugins are loaded
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' m'
 
@@ -23,10 +22,7 @@ require('lazy').setup({
   import = 'plugins'
 })
 
--- [[ Options Configuration ]]
-require "custom.options"
--- [[ Keymap Configuration ]]
-require "custom.keymaps"
 
--- The line beneath this is called `modeline`. See `:help modeline`
+require('custom')
+
 -- vim: ts=2 sts=2 sw=2 et

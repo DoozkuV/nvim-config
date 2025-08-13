@@ -1,8 +1,9 @@
 -- My personal spell-check plugin
 return {
   "DoozkuV/quick-spell.nvim",
+  -- lazy = false,
   dependencies = {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim'
   },
   keys = { {
     '<C-;>',
