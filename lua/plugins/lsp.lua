@@ -48,6 +48,7 @@ return {
           },
         },
         jsonls = {},
+        csharp_ls = {},
 
         -- Web dev
         html = { filetypes = { 'html', 'twig', 'hbs' } },
