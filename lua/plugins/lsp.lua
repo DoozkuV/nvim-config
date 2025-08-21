@@ -25,6 +25,11 @@ return {
       'saghen/blink.cmp',
     },
     event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { 'grd',        vim.lsp.buf.definition, },
+      { '<leader>om', ':Mason<cr>',           desc = "Open Mason",       silent = true, },
+      { '<leader>os', ':LspInfo<cr>',         desc = "Open Server Info", silent = true, },
+    },
     config = function()
       -- LSP SERVER CONFIGURATION
       local servers = {
@@ -86,12 +91,6 @@ return {
         })
       end, { desc = "Toggle Warnings", silent = true })
     end,
-    keys = {
-      {
-        'grd',
-        vim.lsp.buf.definition,
-      },
-    }
   },
   -- FORMATTING PLUGIN
   {
