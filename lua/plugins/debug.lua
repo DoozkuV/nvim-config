@@ -13,7 +13,14 @@ return {
     'rcarriga/nvim-dap-ui',
 
     -- Installs the debug adapters for you
-    'williamboman/mason.nvim',
+    {
+      'williamboman/mason.nvim',
+      opts = {
+        ensure_installed = {
+          "netcoredbg",
+        }
+      }
+    },
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
@@ -135,20 +142,23 @@ return {
     -- Install golang specific config
     require('dap-go').setup()
 
-    dap.adapters.coreclr = {
+    -- Dotnet config
+    local mason_path = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg"
+    local netcoredbg_adapter = {
       type = 'executable',
-      command = vim.fn.expand('~/.local/share/nvim/mason/packages/netcoredbg/netcoredbg'),
+      command = mason_path,
       args = { '--interpreter=vscode' },
     }
+
+    dap.adapters.netcoredbg = netcoredbg_adapter
+    dap.adapters.coreclr = netcoredbg_adapter
 
     dap.configurations.cs = {
       {
         type = "coreclr",
         name = "launch - netcoredbg",
         request = "launch",
-        program = function()
-          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-        end
+        program = require('utils.nvim-dap-dotnet').build_dll_path
       }
     }
   end,
