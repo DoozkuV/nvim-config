@@ -58,6 +58,16 @@ return {
       '<F7>',
       function() require('dapui').toggle() end,
       desc = "Debug: See last session result"
+    },
+    {
+      '<leader>dr',
+      function() require('dap').repl.open() end,
+      desc = "Debug: Open Repl"
+    },
+    {
+      '<leader>dl',
+      function() require('dap').run_last() end,
+      desc = "Debug: Run last"
     }
 
   },
@@ -124,5 +134,22 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = vim.fn.expand('~/.local/share/nvim/mason/packages/netcoredbg/netcoredbg'),
+      args = { '--interpreter=vscode' },
+    }
+
+    dap.configurations.cs = {
+      {
+        type = "coreclr",
+        name = "launch - netcoredbg",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end
+      }
+    }
   end,
 }
