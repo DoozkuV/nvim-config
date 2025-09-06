@@ -1,0 +1,12 @@
+{
+  "<% template %>": {
+    "prefix": "st",
+    "body": "<% ${1} %>",
+    "description": "Snippet for ERB scriptlet tags"
+  },
+  "<%= template %>": {
+    "prefix": "et",
+    "body": "<%= ${1} %>",
+    "description": "Snippet for ERB expression tags"
+  }
+}
