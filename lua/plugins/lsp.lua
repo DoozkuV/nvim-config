@@ -45,7 +45,6 @@ return {
 
         phpactor = { filetypes = { "php" } },
         zls = {},
-        ruby_lsp = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },
