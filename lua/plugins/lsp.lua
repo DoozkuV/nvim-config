@@ -123,7 +123,7 @@ return {
         end
       end,
       formatters_by_ft = vim.tbl_map(function(_)
-        return { "prettierd", "prettier", stop_after_first = true }
+        return { "biome", "prettierd", "prettier", stop_after_first = true }
       end, { "javascript", "javascriptreact", "typescript", "typescriptreact" }),
     },
   }

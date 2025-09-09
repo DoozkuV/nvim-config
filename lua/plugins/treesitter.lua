@@ -1,11 +1,3 @@
--- Add hyprlang filetype support
--- This should no longer be necessary - hyprlang support should exist by default.
--- vim.filetype.add {
---   extension = { rasi = 'rasi' },
---   pattern = {
---     ['.*/hypr/.*%.conf'] = 'hyprlang',
---   }
--- }
 -- Stores all the filetypes to be supported by treesitter
 local supported_languages = { 'c', 'cpp', 'go', 'gomod',
   'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
@@ -52,7 +44,6 @@ return {
 
   build = ':TSUpdate',
   ft = supported_filetypes,
-  -- This gets passed into the "Plugin.config()" value
   config = function()
     --@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {

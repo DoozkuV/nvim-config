@@ -143,15 +143,16 @@ return {
     require('dap-go').setup()
 
     -- Dotnet config
-    local mason_path = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg"
+    local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
     local netcoredbg_adapter = {
       type = 'executable',
-      command = mason_path,
+      command = mason_path .. "/netcoredbg/netcoredbg",
       args = { '--interpreter=vscode' },
     }
 
     dap.adapters.netcoredbg = netcoredbg_adapter
     dap.adapters.coreclr = netcoredbg_adapter
+
 
     dap.configurations.cs = {
       {
@@ -159,6 +160,29 @@ return {
         name = "launch - netcoredbg",
         request = "launch",
         program = require('utils.nvim-dap-dotnet').build_dll_path
+      }
+    }
+
+    -- Rust configuration
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = "${port}",
+      executable = {
+        command = mason_path .. "/codelldb/codelldb",
+        args = { "--port", "${port}" }
+      }
+    }
+
+    dap.configurations.rust = {
+      {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false
       }
     }
   end,

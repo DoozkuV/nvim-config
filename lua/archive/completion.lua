@@ -1,4 +1,3 @@
--- TODO: Convert this config into blink nvim
 vim.g.cmp_enabled = true
 return {
   -- Autocompletion
