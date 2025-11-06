@@ -7,12 +7,12 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- Set tabs
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
--- Make tabs into spaces
-vim.o.expandtab = true
+-- Tab Configuration
+vim.o.tabstop = 4       -- Num of spaces normal tabs are rendered as
+vim.o.shiftwidth = 4    -- Num spaces inserted when using spaces instead of tabs
+vim.o.softtabstop = -1  -- Num spaces inserted when hitting <Tab> in insert mode
+vim.o.expandtab = false -- Make tabs into spaces
+
 
 -- Make long lines wrap at word endings
 vim.o.linebreak = true
@@ -27,7 +27,7 @@ vim.o.mouse = 'a'
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
@@ -63,9 +63,9 @@ vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = '*',
 })
