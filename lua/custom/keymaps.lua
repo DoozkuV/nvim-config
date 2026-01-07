@@ -50,7 +50,7 @@ vim.keymap.set("n", "<leader>tp", ":TogglePencil<cr>", { desc = "Toggle Pencil",
 -- set("n", "<leader>tz", ":ZenMode<cr>", { desc = "Toggle Zen Mode", silent = true })
 -- set("n", "<leader>ts", ":setlocal spell!<cr>", { desc = "Toggle Spellcheck", silent = true })
 vim.keymap.set("n", "<leader>ts", function()
-  local new = not vim.opt_local.spell:get()
+  local new = not vim.opt_local.spell
   vim.opt_local.spell = new
   print("Spelling " .. (new and "enabled" or "disabled"))
 end, { desc = "Toggle Spellcheck", silent = true })
