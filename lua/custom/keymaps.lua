@@ -57,3 +57,19 @@ end, { desc = "Toggle Spellcheck", silent = true })
 
 vim.keymap.set("n", "<leader>br", ":e<cr>", { desc = "Buffer Revert", silent = true })
 -- '<leader>tm' toggles markdown-preview... see markdown.lua
+-- Commands to copy filenames
+vim.keymap.set(
+  "n", "<leader>cp", function()
+    local filename = vim.fn.expand("%:t")
+    vim.fn.setreg("+", filename)
+    vim.notify("Copied " .. filename, vim.log.levels.INFO)
+  end,
+  { desc = "Copy File Name", silent = true })
+
+vim.keymap.set(
+  "n", "<leader>cP", function()
+    local filename = vim.fn.expand("%:p")
+    vim.fn.setreg("+", filename)
+    vim.notify("Copied " .. filename, vim.log.levels.INFO)
+  end,
+  { desc = "Copy File Name", silent = true })
