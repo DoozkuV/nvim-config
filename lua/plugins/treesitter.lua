@@ -1,58 +1,36 @@
--- Stores all the filetypes to be supported by treesitter
-local supported_languages = { 'c', 'cpp', 'go', 'gomod',
-  'gosum', 'lua', 'python', 'rust', 'vimdoc', 'vim', 'json', 'jsonc',
-  'markdown', 'markdown_inline', 'racket', 'javascript', 'typescript',
-  'query', 'scheme', 'fennel', 'bash', 'elixir', 'hyprlang', 'rasi', 'svelte',
-  'zig', 'latex', 'ruby', 'sql'
-}
-
-local supported_filetypes = { "cs", "typescriptreact", "tex" }
-for i, v in pairs(supported_languages) do
-  if v ~= "latex" then
-    supported_filetypes[i] = v
-  end
-end
-
 return {
-  -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    -- Set rainbow delimiters
     {
       'hiphish/rainbow-delimiters.nvim',
       config = function()
         local rainbow_delimiters = require('rainbow-delimiters')
-        -- Rainbow delimiters configuration
         vim.g.rainbow_delimiters = {
           strategy = {
-            -- Global highlights every parenthesis,
-            -- Local only highlights parenthesis you are near
-            -- The '' is a base key to match with every lang
             [''] = rainbow_delimiters.strategy['global'],
           },
           query = {
             [''] = 'rainbow-delimiters',
-            -- Highlights function blocks
             lua = 'rainbow-blocks',
           }
-
         }
       end
     },
   },
-
   build = ':TSUpdate',
-  ft = supported_filetypes,
+  event = { 'BufReadPost', 'BufNewFile' },
   config = function()
-    --@diagnostic disable-next-line: missing-fields
+    ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
-      -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = supported_languages,
-
-      -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+      ensure_installed = {
+        'bash', 'c', 'cpp', 'elixir', 'fennel', 'go', 'gomod', 'gosum',
+        'hyprlang', 'javascript', 'json', 'jsonc', 'latex', 'lua',
+        'markdown', 'markdown_inline', 'python', 'query', 'racket',
+        'rasi', 'ruby', 'rust', 'scheme', 'sql', 'svelte', 'typescript',
+        'vim', 'vimdoc', 'zig',
+      },
       auto_install = true,
-
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
@@ -67,9 +45,8 @@ return {
       textobjects = {
         select = {
           enable = true,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
             ['aa'] = '@parameter.outer',
             ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
@@ -80,7 +57,7 @@ return {
         },
         move = {
           enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
+          set_jumps = true,
           goto_next_start = {
             [']m'] = '@function.outer',
             [']]'] = '@class.outer',
