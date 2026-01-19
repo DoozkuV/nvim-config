@@ -38,7 +38,11 @@ return {
         },
         gopls = {},
         basedpyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          procMacro = {
+            enable = true,
+          },
+        },
         elixirls = { single_file_support = true },
         sqlls = { filetypes = { 'sql', 'mysql' } },
         bashls = { filetypes = { 'sh', 'zsh' }, },
