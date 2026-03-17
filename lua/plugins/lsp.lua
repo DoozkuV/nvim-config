@@ -38,9 +38,12 @@ return {
         },
         gopls = {},
         basedpyright = {},
+        ruff = {},
         rust_analyzer = {
-          procMacro = {
-            enable = true,
+          settings = {
+            ["rust-analyzer"] = {
+              procMacro = { enable = true },
+            },
           },
         },
         elixirls = { single_file_support = true },
@@ -50,13 +53,20 @@ return {
         phpactor = { filetypes = { "php" } },
         zls = {},
         lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
+          settings = {
+            Lua = {
+              workspace = { checkThirdParty = false },
+              telemetry = { enable = false },
+            },
           },
         },
         jsonls = {},
         csharp_ls = {},
+        hls = {
+          cmd = { vim.fn.expand("~/.ghcup/bin/haskell-language-server-wrapper"), "--lsp" },
+          filetypes = { 'haskell', 'lhaskell', 'cabal' }
+        },
+        ocamllsp = {},
 
         -- Web dev
         html = { filetypes = { 'html', 'twig', 'hbs' } },
@@ -72,9 +82,15 @@ return {
         astro = {},
       }
 
-      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+      -- blink.cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+
+      -- Configure each server with capabilities and settings
+      for server_name, config in pairs(servers) do
+        config.capabilities = capabilities
+        vim.lsp.config[server_name] = config
+      end
 
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
@@ -126,9 +142,12 @@ return {
           }
         end
       end,
-      formatters_by_ft = vim.tbl_map(function(_)
-        return { "biome", "prettierd", "prettier", stop_after_first = true }
-      end, { "javascript", "javascriptreact", "typescript", "typescriptreact" }),
+      formatters_by_ft = vim.tbl_extend("error",
+        vim.tbl_map(function(_)
+          return { "biome", "prettierd", "prettier", stop_after_first = true }
+        end, { "javascript", "javascriptreact", "typescript", "typescriptreact" }),
+        { python = { "ruff_format", "ruff_organize_imports" } }
+      ),
     },
   }
 }
