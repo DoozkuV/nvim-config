@@ -1,115 +1,14 @@
+vim.g.format_on_save = false
 return {
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Manage and install LSPs automatically
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
-
-      -- Extra LSP features when editing nvim conf
-      {
-        'folke/lazydev.nvim',
-        ft = 'lua',
-        opts = {
-          library = {
-            { path = "luvit-meta/library", words = { "vim%.uv" } }
-          },
-        },
+  -- Extra LSP features when editing nvim conf
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } }
       },
-      { 'Bilal2453/luvit-meta', lazy = true },
-      -- Completion
-      'saghen/blink.cmp',
     },
-    event = { "BufReadPre", "BufNewFile" },
-    keys = {
-      { 'grd',        vim.lsp.buf.definition, },
-      { '<leader>om', ':Mason<cr>',           desc = "Open Mason",       silent = true, },
-      { '<leader>os', ':LspInfo<cr>',         desc = "Open Server Info", silent = true, },
-    },
-    config = function()
-      -- LSP SERVER CONFIGURATION
-      local servers = {
-        clangd = {
-          filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" }
-        },
-        gopls = {},
-        basedpyright = {},
-        ruff = {},
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              procMacro = { enable = true },
-            },
-          },
-        },
-        elixirls = { single_file_support = true },
-        sqlls = { filetypes = { 'sql', 'mysql' } },
-        bashls = { filetypes = { 'sh', 'zsh' }, },
-
-        phpactor = { filetypes = { "php" } },
-        zls = {},
-        lua_ls = {
-          settings = {
-            Lua = {
-              workspace = { checkThirdParty = false },
-              telemetry = { enable = false },
-            },
-          },
-        },
-        jsonls = {},
-        csharp_ls = {},
-        hls = {
-          cmd = { vim.fn.expand("~/.ghcup/bin/haskell-language-server-wrapper"), "--lsp" },
-          filetypes = { 'haskell', 'lhaskell', 'cabal' }
-        },
-        ocamllsp = {},
-
-        -- Web dev
-        html = { filetypes = { 'html', 'twig', 'hbs' } },
-        cssls = {},
-        ts_ls = {},
-        tailwindcss = {},
-        emmet_ls = { filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "htmlangular", "templ" } },
-
-        -- Go templating language
-        templ = {},
-        -- Web frameworks
-        svelte = {},
-        astro = {},
-      }
-
-      -- blink.cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-
-      -- Configure each server with capabilities and settings
-      for server_name, config in pairs(servers) do
-        config.capabilities = capabilities
-        vim.lsp.config[server_name] = config
-      end
-
-      -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
-
-      mason_lspconfig.setup {
-        automatic_enable = true,
-        ensure_installed = vim.tbl_keys(servers),
-      }
-
-      -- LSP Diagnostic Warnings Toggle
-      local isLspDiagnosticsVisible = true
-      vim.keymap.set("n", "<leader>tw", function()
-        isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-        vim.diagnostic.config({
-          virtual_text = isLspDiagnosticsVisible,
-          underline = isLspDiagnosticsVisible,
-        })
-      end, { desc = "Toggle Warnings", silent = true })
-    end,
   },
   -- FORMATTING PLUGIN
   {
@@ -125,15 +24,21 @@ return {
         mode = '',
         desc = '[F]ormat buffer',
       },
+      {
+        '<leader>tf',
+        function()
+          vim.g.format_on_save = not vim.g.format_on_save
+          vim.notify('Format on save: ' .. tostring(vim.g.format_on_save), vim.log.levels.INFO)
+        end,
+        mode = '',
+        desc = '[T]oggle [F]ormatting on save'
+      },
     },
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
+        if disable_filetypes[vim.bo[bufnr].filetype] or not vim.g.format_on_save then
           return nil
         else
           return {
