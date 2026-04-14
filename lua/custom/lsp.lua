@@ -31,10 +31,10 @@ local servers = {
     filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
     root_markers = { 'go.work', 'go.mod', '.git' },
   },
-  basedpyright = {
-    cmd = { 'basedpyright-langserver', '--stdio' },
+  ty = {
+    cmd = { 'ty', 'server' },
     filetypes = { 'python' },
-    root_markers = { 'pyrightconfig.json', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
+    root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
   },
   ruff = {
     cmd = { 'ruff', 'server' },

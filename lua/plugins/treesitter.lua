@@ -75,7 +75,7 @@ return {
     -- Ensure parsers are installed
     local ensure_installed = {
       'bash', 'c', 'cpp', 'elixir', 'fennel', 'go', 'gomod', 'gosum',
-      'hyprlang', 'javascript', 'json', 'jsonc', 'latex', 'lua',
+      'hyprlang', 'javascript', 'json', 'latex', 'lua',
       'markdown', 'markdown_inline', 'python', 'query', 'racket',
       'rasi', 'ruby', 'rust', 'scheme', 'sql', 'svelte', 'typescript',
       'vim', 'vimdoc', 'zig',
