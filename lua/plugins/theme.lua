@@ -6,7 +6,7 @@ return {
     priority = 1000,
     enabled = true,
     opts = {
-      transparent_background = true,
+      transparent_background = vim.uv.os_uname().sysname == "Linux",
       flavour = "mocha",
     },
     config = function()

@@ -56,8 +56,11 @@ vim.o.termguicolors = true
 -- For the obsidian plugin
 vim.opt.conceallevel = 2
 
--- Set background to be transparent
-vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
+-- Set background to be transparent on Linux
+if vim.uv.os_uname().sysname == "Linux" then
+	vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
+end
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
